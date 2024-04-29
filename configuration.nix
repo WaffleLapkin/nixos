@@ -1,0 +1,227 @@
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+
+{ inputs, config, lib, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      inputs.nixos-hardware.nixosModules.asus-battery
+      inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+      inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+      inputs.nixos-hardware.nixosModules.common-pc-laptop
+      inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+      inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    ];
+  boot.kernelParams = [ 
+      # disables the watchdogs so that I can actually turn off the laptop normally lol :|
+      "nowatchdog"
+      "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
+      # disable psr (which causes amdgpu crashes) (0x18B & ~0x8)
+      "amdgpu.dcfeaturemask=0x183"
+  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.overlays = [ inputs.fenix.overlays.default ];
+  ## try to fix visual bugs :sob:
+  #chaotic.mesa-git.enable = true;
+  #chaotic.mesa-git.method = "replaceRuntimeDependencies";
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  networking.hostName = "polaris"; # Define your hostname.
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  systemd.services.NetworkManager-wait-online.enable = false; # workaround for a bug <https://github.com/NixOS/nixpkgs/issues/180175>
+  services.asusd = {
+      enable = true;
+      enableUserService = true;
+  };
+  # Set your time zone.
+  time.timeZone = "Europe/Amsterdam";
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  boot.initrd.luks.devices.nixos-enc = {
+    device = "/dev/nvme0n1p2";
+    preLVM = true;
+  };
+  fileSystems."/boot".options = [ "umask=0077" ];
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+  programs._1password-gui.enable = true;
+  programs.fish.enable = true;
+  # Select internationalisation properties.
+  # i18n.defaultLocale = "en_US.UTF-8";
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  #   useXkbConfig = true; # use xkb.options in tty.
+  # };
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+  # Configure keymap in X11
+  # services.xserver.xkb.layout = "us";
+  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+  # Enable CUPS to print documents.
+  # services.printing.enable = true;
+  # Define a user account. Don't forget to set a password with passwd
+  users.users.wffl = {
+    isNormalUser = true;
+    shell = pkgs.fish;
+    extraGroups = [ "wheel" ]; # Enable sudo for the user.
+    packages = with pkgs; [
+      firefox
+      tree
+      thunderbird
+      telegram-desktop
+      discord
+      zulip
+      mangohud
+      mpv
+      zoxide
+      zoom-us
+      (vscode-with-extensions.override {
+         vscodeExtensions = with vscode-extensions; [
+           ms-vscode-remote.remote-ssh
+           #a5huynh.vscode-ron
+           #alefragnani.bookmarks
+           #attilabuti.brainfuck-syntax
+           #coalaura.ctrl-s
+           #dhall.dhall-lang
+           #dhall.vscode-dhall-lsp-server
+           eamodio.gitlens
+           gruntfuggly.todo-tree
+           #haskell.haskell
+           #huytd.tokyo-city
+           #james-yu.latex-workshop
+           #justusadam.language-haskell
+           k--kato.intellij-idea-keybindings
+           kahole.magit
+           #kshetline.ligatures-limited
+           #mechatroner.rainbow-csv
+           #ms-vscode.cpptools
+           ms-vsliveshare.vsliveshare
+           #ritwickdey.liveserver
+           rust-lang.rust-analyzer
+           serayuzgur.crates
+           streetsidesoftware.code-spell-checker
+           #streetsidesoftware.code-spell-checker-dutch
+           #streetsidesoftware.code-spell-checker-russian
+           #tabnine.tabnine-vscode
+           tamasfe.even-better-toml
+           #tht13.html-preview-vscode
+           usernamehw.errorlens
+           #wakatime.vscode-wakatime
+           #wcrichton.flowistry
+           #znck.grammarly
+         ]; #++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ #leonardssh.vscord, macabeus.vscode-fluent, matklad.pale-fire, ms-vscode-remote.remote-ssh-edit, ms-vscode.remote-explorer)
+           #{
+           #  name = "remote-ssh-edit";
+           #  publisher = "ms-vscode-remote";
+           #  version = "0.47.2";
+           #  sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+           #}
+         #];
+       })
+           (fenix.complete.withComponents [
+      "rustc"
+      "cargo"
+      "rustfmt"
+      "rust-src"
+      "rust-analyzer"
+      "clippy"
+      "miri"
+    ])
+    ];
+  };
+  # DE
+  services.desktopManager.plasma6.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.displayManager.sddm.wayland.enable = true;
+  services.xserver = {
+    enable = true;
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+    videoDrivers = [ "nvidia" ];
+    #videoDrivers = lib.mkForce [ "modesetting" ];
+    xkb.layout = "us,ru";
+  };
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass"; # https://github.com/NixOS/nixpkgs/issues/75867
+  hardware.pulseaudio.enable = false; # gnome-only workaround?
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.GDK_SCALE = "2"; # try to scale non-native running apps
+  environment.sessionVariables.STEAM_FORCE_DESKTOPUI_SCALING = "1.5"; # force steam to scale
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+  };
+  hardware = {
+    enableRedistributableFirmware = true;
+    bluetooth.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      prime = {
+        offload = {
+			    enable = true;
+			    enableOffloadCmd = true;
+		    };
+        nvidiaBusId = "PCI:01:0:0";
+        amdgpuBusId = "PCI:69:0:0";
+      };
+    };
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+  };
+  nixpkgs.config.allowUnfree = true; # we want drivers lol
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    htop
+    git
+    micro
+    asusctl
+  ];
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+  # List services that you want to enable:
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  # system.copySystemConfiguration = true;
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system.
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "24.05"; # Did you read the comment? No.
+}
