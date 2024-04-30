@@ -154,11 +154,11 @@
   };
   # DE
   services.desktopManager.plasma6.enable = true;
-  #services.displayManager.sddm.enable = true;
+  #services.displayManager.sddm.enable = true; # sddm is hella laggy, I'd prefer using gdm (or something else entirely!)
   #services.displayManager.sddm.wayland.enable = true;
   services.xserver = {
     enable = true;
-    desktopManager.gnome.enable = true;
+    #desktopManager.gnome.enable = true; # I don't necesserily need gnome and it adds a ton of annoying packages
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
     videoDrivers = [ "nvidia" ];
@@ -239,3 +239,6 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment? No.
 }
+
+
+# idk where to put it, but I expirience this bug: <https://bugs.kde.org/show_bug.cgi?id=459373>
