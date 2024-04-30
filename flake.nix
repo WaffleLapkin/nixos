@@ -7,6 +7,7 @@
   };
 
   outputs = inputs@{ nixpkgs, chaotic, ... }: {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     nixosConfigurations.polaris = nixpkgs.lib.nixosSystem {
       modules = [ ./configuration.nix chaotic.nixosModules.default ]; 
       specialArgs = { inherit inputs; };
