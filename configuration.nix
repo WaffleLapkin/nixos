@@ -50,8 +50,22 @@
     preLVM = true;
   };
   fileSystems."/boot".options = [ "umask=0077" ];
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
+  programs.steam = {
+      enable = true;
+      #remotePlay.openFirewall = true;
+      #dedicatedServer.openFirewall = true;
+      gamescopeSession.enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs: with pkgs; [
+          # Needed for gamescope to work
+          # <https://www.reddit.com/r/NixOS/comments/1bmj4mz/gamescope_and_steam/>
+          # <https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338>
+          libkrb5
+          keyutils
+        ];
+      };
+  };
+
   programs._1password-gui.enable = true;
   programs.fish.enable = true;
   # Select internationalisation properties.
