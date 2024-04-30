@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.nixos-hardware.nixosModules.asus-battery
       inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
@@ -15,12 +16,12 @@
       inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
       inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     ];
-  boot.kernelParams = [ 
-      # disables the watchdogs so that I can actually turn off the laptop normally lol :|
-      "nowatchdog"
-      "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
-      # disable psr (which causes amdgpu crashes) (0x18B & ~0x8)
-      "amdgpu.dcfeaturemask=0x183"
+  boot.kernelParams = [
+    # disables the watchdogs so that I can actually turn off the laptop normally lol :|
+    "nowatchdog"
+    "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
+    # disable psr (which causes amdgpu crashes) (0x18B & ~0x8)
+    "amdgpu.dcfeaturemask=0x183"
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.overlays = [ inputs.fenix.overlays.default ];
@@ -34,11 +35,11 @@
   networking.hostName = "polaris"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   systemd.services.NetworkManager-wait-online.enable = false; # workaround for a bug <https://github.com/NixOS/nixpkgs/issues/180175>
   services.asusd = {
-      enable = true;
-      enableUserService = true;
+    enable = true;
+    enableUserService = true;
   };
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -51,19 +52,19 @@
   };
   fileSystems."/boot".options = [ "umask=0077" ];
   programs.steam = {
-      enable = true;
-      #remotePlay.openFirewall = true;
-      #dedicatedServer.openFirewall = true;
-      gamescopeSession.enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          # Needed for gamescope to work
-          # <https://www.reddit.com/r/NixOS/comments/1bmj4mz/gamescope_and_steam/>
-          # <https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338>
-          libkrb5
-          keyutils
-        ];
-      };
+    enable = true;
+    #remotePlay.openFirewall = true;
+    #dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+    package = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        # Needed for gamescope to work
+        # <https://www.reddit.com/r/NixOS/comments/1bmj4mz/gamescope_and_steam/>
+        # <https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338>
+        libkrb5
+        keyutils
+      ];
+    };
   };
 
   programs._1password-gui.enable = true;
@@ -99,57 +100,57 @@
       zoxide
       zoom-us
       (vscode-with-extensions.override {
-         vscodeExtensions = with vscode-extensions; [
-           ms-vscode-remote.remote-ssh
-           #a5huynh.vscode-ron
-           #alefragnani.bookmarks
-           #attilabuti.brainfuck-syntax
-           #coalaura.ctrl-s
-           #dhall.dhall-lang
-           #dhall.vscode-dhall-lsp-server
-           eamodio.gitlens
-           gruntfuggly.todo-tree
-           #haskell.haskell
-           #huytd.tokyo-city
-           #james-yu.latex-workshop
-           #justusadam.language-haskell
-           k--kato.intellij-idea-keybindings
-           kahole.magit
-           #kshetline.ligatures-limited
-           #mechatroner.rainbow-csv
-           #ms-vscode.cpptools
-           ms-vsliveshare.vsliveshare
-           #ritwickdey.liveserver
-           rust-lang.rust-analyzer
-           serayuzgur.crates
-           streetsidesoftware.code-spell-checker
-           #streetsidesoftware.code-spell-checker-dutch
-           #streetsidesoftware.code-spell-checker-russian
-           #tabnine.tabnine-vscode
-           tamasfe.even-better-toml
-           #tht13.html-preview-vscode
-           usernamehw.errorlens
-           #wakatime.vscode-wakatime
-           #wcrichton.flowistry
-           #znck.grammarly
-         ]; #++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ #leonardssh.vscord, macabeus.vscode-fluent, matklad.pale-fire, ms-vscode-remote.remote-ssh-edit, ms-vscode.remote-explorer)
-           #{
-           #  name = "remote-ssh-edit";
-           #  publisher = "ms-vscode-remote";
-           #  version = "0.47.2";
-           #  sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-           #}
-         #];
-       })
-           (fenix.complete.withComponents [
-      "rustc"
-      "cargo"
-      "rustfmt"
-      "rust-src"
-      "rust-analyzer"
-      "clippy"
-      "miri"
-    ])
+        vscodeExtensions = with vscode-extensions; [
+          ms-vscode-remote.remote-ssh
+          #a5huynh.vscode-ron
+          #alefragnani.bookmarks
+          #attilabuti.brainfuck-syntax
+          #coalaura.ctrl-s
+          #dhall.dhall-lang
+          #dhall.vscode-dhall-lsp-server
+          eamodio.gitlens
+          gruntfuggly.todo-tree
+          #haskell.haskell
+          #huytd.tokyo-city
+          #james-yu.latex-workshop
+          #justusadam.language-haskell
+          k--kato.intellij-idea-keybindings
+          kahole.magit
+          #kshetline.ligatures-limited
+          #mechatroner.rainbow-csv
+          #ms-vscode.cpptools
+          ms-vsliveshare.vsliveshare
+          #ritwickdey.liveserver
+          rust-lang.rust-analyzer
+          serayuzgur.crates
+          streetsidesoftware.code-spell-checker
+          #streetsidesoftware.code-spell-checker-dutch
+          #streetsidesoftware.code-spell-checker-russian
+          #tabnine.tabnine-vscode
+          tamasfe.even-better-toml
+          #tht13.html-preview-vscode
+          usernamehw.errorlens
+          #wakatime.vscode-wakatime
+          #wcrichton.flowistry
+          #znck.grammarly
+        ]; #++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ #leonardssh.vscord, macabeus.vscode-fluent, matklad.pale-fire, ms-vscode-remote.remote-ssh-edit, ms-vscode.remote-explorer)
+        #{
+        #  name = "remote-ssh-edit";
+        #  publisher = "ms-vscode-remote";
+        #  version = "0.47.2";
+        #  sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+        #}
+        #];
+      })
+      (fenix.complete.withComponents [
+        "rustc"
+        "cargo"
+        "rustfmt"
+        "rust-src"
+        "rust-analyzer"
+        "clippy"
+        "miri"
+      ])
     ];
   };
   # DE
@@ -185,9 +186,9 @@
       modesetting.enable = true;
       prime = {
         offload = {
-			    enable = true;
-			    enableOffloadCmd = true;
-		    };
+          enable = true;
+          enableOffloadCmd = true;
+        };
         nvidiaBusId = "PCI:01:0:0";
         amdgpuBusId = "PCI:69:0:0";
       };
