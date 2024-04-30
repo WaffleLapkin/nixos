@@ -50,6 +50,34 @@
     device = "/dev/nvme0n1p2";
     preLVM = true;
   };
+  services.udev.extraHwdb = ''
+    # Rebinds keys on elecom huge trackball
+    #
+    # tip: You can use `sudo evtest` to get the key values and stuff.
+    #
+    # 90001 = L
+    # 90002 = R
+    # 90003 = M (scroll wheel button)
+    # 90004 = < (back)
+    # 90005 = > (forward)
+    # 90006 = Fn1
+    # 90007 = Fn2
+    # 90008 = Fn3
+    #
+    # key_blue -- noop
+    # btn_0 -- corresponds to key code 256. idk what it does,
+    #          but we can make kwin see it as "scroll" button
+    #          (sadly kwin only wants btn_*, key_* won't work...)
+    evdev:input:b0003v056Ep010D*
+      KEYBOARD_KEY_90001=key_blue
+      KEYBOARD_KEY_90002=btn_0
+      KEYBOARD_KEY_90003=key_blue
+      KEYBOARD_KEY_90004=btn_middle
+      KEYBOARD_KEY_90005=key_blue
+      KEYBOARD_KEY_90006=btn_left
+      KEYBOARD_KEY_90007=btn_right
+      KEYBOARD_KEY_90008=key_esc
+  '';
   fileSystems."/boot".options = [ "umask=0077" ];
   programs.steam = {
     enable = true;
