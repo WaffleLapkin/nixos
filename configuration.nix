@@ -23,6 +23,7 @@
     # disable psr (which causes amdgpu crashes) (0x18B & ~0x8)
     "amdgpu.dcfeaturemask=0x183"
   ];
+  hardware.sensor.iio.enable = true; # auto rotate screen?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.overlays = [ inputs.fenix.overlays.default ];
   ## try to fix visual bugs :sob:
