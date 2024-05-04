@@ -180,6 +180,7 @@
       mangohud
       mpv
       zoxide
+      obsidian
       zoom-us
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
