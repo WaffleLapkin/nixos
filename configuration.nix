@@ -94,7 +94,7 @@
   #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass"; # https://github.com/NixOS/nixpkgs/issues/75867
   #hardware.pulseaudio.enable = false; # gnome-only workaround?
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # try to run electron apps with ozone so they scale normally
-  environment.sessionVariables.GDK_SCALE = "2"; # try to scale non-native running apps
+  #environment.sessionVariables.GDK_SCALE = "2"; # try to scale non-native running apps
   environment.sessionVariables.STEAM_FORCE_DESKTOPUI_SCALING = "1.5"; # force steam to scale
 
 
