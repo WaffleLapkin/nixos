@@ -109,6 +109,13 @@
   # List services that you want to enable:
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.syncthing = {
+    enable = true;
+    user = "wffl";
+    dataDir = "/home/wffl/Documents";
+    configDir = "/home/wffl/.config/syncthing";
+    # FIXME: configure declaratively, once I'm sure I'm not going to leak private stuff this way lol
+  };
   # Sound
   services.pipewire = {
     enable = true;
