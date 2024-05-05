@@ -170,7 +170,6 @@
   users.users.wffl = {
     isNormalUser = true;
     shell = pkgs.fish;
-    name = "waffle";
     description = "waffle <wffl@riseup.net>";
     extraGroups = [
       # Enable sudo for the user.
