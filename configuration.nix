@@ -170,7 +170,14 @@
   users.users.wffl = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" ]; # Enable sudo for the user.
+    name = "waffle";
+    description = "waffle <wffl@riseup.net>";
+    extraGroups = [
+      # Enable sudo for the user.
+      "wheel"
+      # Allow configuring network stuff (this might be unnecessary)
+      "networkmanager"
+    ];
     packages = with pkgs; [
       firefox
       tree
