@@ -189,6 +189,7 @@
       zoxide
       obsidian
       zoom-us
+      mdbook
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           ms-vscode-remote.remote-ssh
