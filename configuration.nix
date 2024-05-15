@@ -117,6 +117,8 @@
     configDir = "/home/wffl/.config/syncthing";
     # FIXME: configure declaratively, once I'm sure I'm not going to leak private stuff this way lol
   };
+  services.tlp.enable = true;
+  services.power-profiles-daemon.enable = false; # conflicts with tlp
   # Sound
   services.pipewire = {
     enable = true;
