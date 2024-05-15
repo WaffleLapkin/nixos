@@ -190,6 +190,7 @@
       mpv
       zoxide
       obsidian
+      obs-studio
       zoom-us
       mdbook
       (vscode-with-extensions.override {
