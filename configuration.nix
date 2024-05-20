@@ -126,6 +126,7 @@ in
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    wireplumber.enable = true; # https://discord.com/channels/1038201022000156772/1168383071796613250/1241400869132701828
     alsa = {
       enable = true;
       support32Bit = true;
@@ -159,6 +160,10 @@ in
     git
     micro
     asusctl
+    # Makes screen share through FF work.
+    # This should *not* be required, because plasma should enable it itself,
+    # but apperently this actually makes a difference somehow...
+    xdg-desktop-portal-kde
   ];
 
 
@@ -197,6 +202,10 @@ in
       zoom-us
       mdbook
       comic-mono
+      # Discord client with working screen sharing under wayland/plasma.
+      # (I was told in sway the default client works too)
+      # (this could get me banned but ugh)
+      vesktop
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           ms-vscode-remote.remote-ssh
