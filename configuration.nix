@@ -4,7 +4,7 @@
 
 { inputs, config, lib, pkgs, ... }:
 let
-  comic-mono = import ./custom-pkgs/comic-mono { inherit pkgs; };
+  #comic-mono = import ./custom-pkgs/comic-mono { inherit pkgs; };
 in
 
 {
