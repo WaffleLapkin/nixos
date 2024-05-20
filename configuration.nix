@@ -3,6 +3,9 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { inputs, config, lib, pkgs, ... }:
+let
+  comic-mono = import ./custom-pkgs/comic-mono { inherit pkgs; };
+in
 
 {
   imports =
@@ -193,6 +196,7 @@
       obs-studio
       zoom-us
       mdbook
+      comic-mono
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           ms-vscode-remote.remote-ssh
