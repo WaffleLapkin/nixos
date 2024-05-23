@@ -1,4 +1,7 @@
-{ pkgs ? import <nixpkgs> { } }: pkgs.stdenv.mkDerivation {
+{
+  pkgs ? import <nixpkgs> { },
+}:
+pkgs.stdenv.mkDerivation {
   name = "x";
 
   src = ./x.rs;

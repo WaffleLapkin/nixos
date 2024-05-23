@@ -2,25 +2,33 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  #comic-mono = import ./custom-pkgs/comic-mono { inherit pkgs; };
 in
+#comic-mono = import ./custom-pkgs/comic-mono { inherit pkgs; };
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.nixos-hardware.nixosModules.asus-battery
-      inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-      inputs.nixos-hardware.nixosModules.common-gpu-nvidia
-      inputs.nixos-hardware.nixosModules.common-pc-laptop
-      inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
-      inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.asus-battery
+    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+    inputs.nixos-hardware.nixosModules.common-pc-laptop
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs.config.allowUnfree = true; # we want drivers lol
   nixpkgs.overlays = [ inputs.fenix.overlays.default ];
@@ -108,7 +116,6 @@ in
     };
   };
 
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -151,13 +158,14 @@ in
       #dedicatedServer.openFirewall = true;
       gamescopeSession.enable = true;
       package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          # Needed for gamescope to work
-          # <https://www.reddit.com/r/NixOS/comments/1bmj4mz/gamescope_and_steam/>
-          # <https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338>
-          libkrb5
-          keyutils
-        ];
+        extraPkgs =
+          pkgs: with pkgs; [
+            # Needed for gamescope to work
+            # <https://www.reddit.com/r/NixOS/comments/1bmj4mz/gamescope_and_steam/>
+            # <https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338>
+            libkrb5
+            keyutils
+          ];
       };
     };
   };
@@ -173,7 +181,6 @@ in
     # but apperently this actually makes a difference somehow...
     xdg-desktop-portal-kde
   ];
-
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -248,7 +255,7 @@ in
           #wakatime.vscode-wakatime
           #wcrichton.flowistry
           #znck.grammarly
-        ]; #++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ #leonardssh.vscord, macabeus.vscode-fluent, matklad.pale-fire, ms-vscode-remote.remote-ssh-edit, ms-vscode.remote-explorer)
+        ]; # ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ #leonardssh.vscord, macabeus.vscode-fluent, matklad.pale-fire, ms-vscode-remote.remote-ssh-edit, ms-vscode.remote-explorer)
         #{
         #  name = "remote-ssh-edit";
         #  publisher = "ms-vscode-remote";
@@ -315,6 +322,5 @@ in
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment? No.
 }
-
 
 # idk where to put it, but I expirience this bug: <https://bugs.kde.org/show_bug.cgi?id=459373>

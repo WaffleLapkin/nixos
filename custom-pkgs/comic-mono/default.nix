@@ -1,7 +1,11 @@
 # Based on 
 # - AUR package: <https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=ttf-comic-mono-git>
 # - Fire Code nixpkgs package: <https://github.com/NixOS/nixpkgs/blob/311cd0a3d88abaafdd5b5218efd6affea48fba7e/pkgs/by-name/ct/ctx/package.nix#L3>
-{ lib, stdenvNoCC, fetchgit }:
+{
+  lib,
+  stdenvNoCC,
+  fetchgit,
+}:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "comic-mono";
