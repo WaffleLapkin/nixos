@@ -100,6 +100,14 @@ in
   #environment.sessionVariables.GDK_SCALE = "2"; # try to scale non-native running apps
   environment.sessionVariables.STEAM_FORCE_DESKTOPUI_SCALING = "1.5"; # force steam to scale
 
+  # https://github.com/NixOS/nixpkgs/issues/63489#issuecomment-1482312887
+  # Baloo is kinda annoying and indexing everything with no end, so yeah :/
+  environment.etc."xdg/baloofilerc".source = (pkgs.formats.ini { }).generate "baloorc" {
+    "Basic Settings" = {
+      "Indexing-Enabled" = false;
+    };
+  };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
