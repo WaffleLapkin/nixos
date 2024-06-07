@@ -217,10 +217,12 @@ in
       zoom-us
       mdbook
       comic-mono
+      krita
       # Discord client with working screen sharing under wayland/plasma.
       # (I was told in sway the default client works too)
       # (this could get me banned but ugh)
       vesktop
+      zed-editor
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           ms-vscode-remote.remote-ssh
