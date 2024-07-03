@@ -74,10 +74,9 @@ in
         amdgpuBusId = "PCI:69:0:0"; # nice
       };
     };
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
     sensor.iio.enable = true; # auto rotate screen?
   };
