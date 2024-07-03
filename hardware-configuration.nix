@@ -25,9 +25,21 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/ca653cc3-84ac-4ebc-83a8-0624c8006071";
-    fsType = "btrfs";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/ca653cc3-84ac-4ebc-83a8-0624c8006071";
+      fsType = "btrfs";
+    };
+    "/home" = {
+      device = "/dev/disk/by-uuid/ca653cc3-84ac-4ebc-83a8-0624c8006071";
+      fsType = "btrfs";
+      options = [ "subvol=home" ];
+    };
+    "/etc" = {
+      device = "/dev/disk/by-uuid/ca653cc3-84ac-4ebc-83a8-0624c8006071";
+      fsType = "btrfs";
+      options = [ "subvol=etc" ];
+    };
   };
 
   fileSystems."/boot" = {
