@@ -310,6 +310,19 @@ in
       KEYBOARD_KEY_90008=key_esc
   '';
 
+  # Local snapshots (time machine)
+  # <https://github.com/digint/btrbk?tab=readme-ov-file#example-local-regular-snapshots-time-machine>
+  # Thttps://github.com/GoldsteinE/nixos/blob/75fa9409534ac5e2a95ec7e5ed6804fe1b2e476e/modules/desktop/btrbk.nix>
+  services.btrbk.instances.local.settings = {
+    volume."/" = {
+      snapshot_dir = "btrbk_snapshots";
+      subvolume = {
+        etc = { };
+        home = { };
+      };
+    };
+  };
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
