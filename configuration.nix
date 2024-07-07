@@ -43,9 +43,6 @@ in
       "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
       # disable psr (which causes amdgpu crashes) (0x18B & ~0x8)
       "amdgpu.dcfeaturemask=0x183"
-      # an attempt to fix "amd vi io page fault" stuff during hibernation
-      # taken from <https://unix.stackexchange.com/a/469154>
-      "iommu=soft"
     ];
     initrd.luks.devices.nixos-enc = {
       device = "/dev/nvme0n1p2";
