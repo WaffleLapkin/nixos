@@ -107,6 +107,19 @@ in
   #environment.sessionVariables.GDK_SCALE = "2"; # try to scale non-native running apps
   environment.sessionVariables.STEAM_FORCE_DESKTOPUI_SCALING = "1.5"; # force steam to scale
 
+  environment.etc = {
+    "xdg/user-dirs.defaults".text = ''    
+      PICTURES=pictures
+      MUSIC=music
+      VIDEOS=videos
+      DOCUMENTS=documents
+      DOWNLOAD=download
+      DESKTOP=desktop
+      TEMPLATES=templates
+      PUBLICSHARE=public
+    '';
+  };
+
   # https://github.com/NixOS/nixpkgs/issues/63489#issuecomment-1482312887
   # Baloo is kinda annoying and indexing everything with no end, so yeah :/
   environment.etc."xdg/baloofilerc".source = (pkgs.formats.ini { }).generate "baloorc" {
@@ -130,7 +143,7 @@ in
   services.syncthing = {
     enable = true;
     user = "wffl";
-    dataDir = "/home/wffl/Documents";
+    dataDir = "/home/wffl/documents";
     configDir = "/home/wffl/.config/syncthing";
     # FIXME: configure declaratively, once I'm sure I'm not going to leak private stuff this way lol
   };
