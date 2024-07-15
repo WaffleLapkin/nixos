@@ -215,6 +215,7 @@ in
       "networkmanager"
     ];
     packages = with pkgs; [
+      bat
       firefox
       tree
       thunderbird
@@ -232,6 +233,7 @@ in
       krita
       transmission_4-qt
       fzf
+      emulsion
       # Discord client with working screen sharing under wayland/plasma.
       # (I was told in sway the default client works too)
       # (this could get me banned but ugh)
