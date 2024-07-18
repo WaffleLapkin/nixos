@@ -40,6 +40,11 @@
       fsType = "btrfs";
       options = [ "subvol=etc" ];
     };
+    "/chonky" = {
+      device = "/dev/disk/by-uuid/ca653cc3-84ac-4ebc-83a8-0624c8006071";
+      fsType = "btrfs";
+      options = [ "subvol=chonky" ];
+    };
   };
 
   fileSystems."/boot" = {
