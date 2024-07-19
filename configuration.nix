@@ -108,7 +108,7 @@ in
   environment.sessionVariables.STEAM_FORCE_DESKTOPUI_SCALING = "1.5"; # force steam to scale
 
   environment.etc = {
-    "xdg/user-dirs.defaults".text = ''    
+    "xdg/user-dirs.defaults".text = ''
       PICTURES=pictures
       MUSIC=music
       VIDEOS=videos
