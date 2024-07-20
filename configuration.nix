@@ -43,6 +43,13 @@ in
       "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
       # disable psr (which causes amdgpu crashes) (0x18B & ~0x8)
       "amdgpu.dcfeaturemask=0x183"
+      # Weird hack to fix fucking artifacts.
+      # Without it I currently (as of 2024-07-20) get a lot of artifacts when windows are updating.
+      # The artifacts are most prevalent when there are multiple windows open and in firefox and steam.
+      # This doesn't fix the artifacts fully -- I still get them in the control panel (or whatever
+      # it's called) when opening firefox. /But/, it does make it possible for me to use my computer,
+      # so a win is a win ig.
+      "amdgpu.sg_display=0"
     ];
     initrd.luks.devices.nixos-enc = {
       device = "/dev/nvme0n1p2";
