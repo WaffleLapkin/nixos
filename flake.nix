@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixpkgs_olympus.url = "github:Petingoso/nixpkgs/olympus";
     fenix.url = "github:nix-community/fenix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };

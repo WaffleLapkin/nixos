@@ -82,11 +82,28 @@
         "type": "github"
       }
     },
+    "nixpkgs_olympus": {
+      "locked": {
+        "lastModified": 1721676803,
+        "narHash": "sha256-fqOR96J6lNg/sCELrNHqWTaRcz413n+EuvhII8nz+o8=",
+        "owner": "Petingoso",
+        "repo": "nixpkgs",
+        "rev": "57943708113949d3f9f7fce5b835f71a99ebc5b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Petingoso",
+        "ref": "olympus",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fenix": "fenix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs_olympus": "nixpkgs_olympus",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix"
       }

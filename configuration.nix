@@ -222,6 +222,7 @@ in
       "networkmanager"
     ];
     packages = with pkgs; [
+      inputs.nixpkgs_olympus.legacyPackages.${system}.olympus
       bat
       firefox
       tree
