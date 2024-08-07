@@ -232,6 +232,7 @@ in
       zulip
       mangohud
       mpv
+      wl-clipboard-rs # used by an MPV script I have which allows pasting URLs into mpv
       zoxide
       obsidian
       obs-studio
