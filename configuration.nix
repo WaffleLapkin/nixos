@@ -170,6 +170,7 @@ in
   programs = {
     fish.enable = true;
     _1password-gui.enable = true;
+    direnv.enable = true;
 
     steam = {
       enable = true;
@@ -280,6 +281,7 @@ in
           tamasfe.even-better-toml
           #tht13.html-preview-vscode
           usernamehw.errorlens
+          mkhl.direnv
           #wakatime.vscode-wakatime
           #wcrichton.flowistry
           #znck.grammarly
