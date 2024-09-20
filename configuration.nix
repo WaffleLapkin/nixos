@@ -71,6 +71,7 @@ in
     enableRedistributableFirmware = true;
     bluetooth.enable = true;
     nvidia = {
+      open = false;
       modesetting.enable = true;
       prime = {
         offload = {
@@ -154,8 +155,8 @@ in
     configDir = "/home/wffl/.config/syncthing";
     # FIXME: configure declaratively, once I'm sure I'm not going to leak private stuff this way lol
   };
-  services.tlp.enable = true;
-  services.power-profiles-daemon.enable = false; # conflicts with tlp
+  services.tlp.enable = false;
+  services.power-profiles-daemon.enable = true; # conflicts with tlp
   # Sound
   services.pipewire = {
     enable = true;
