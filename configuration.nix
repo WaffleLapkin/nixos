@@ -197,6 +197,7 @@ in
     git
     micro
     asusctl
+    wineWowPackages.waylandFull
     # Makes screen share through FF work.
     # This should *not* be required, because plasma should enable it itself,
     # but apperently this actually makes a difference somehow...
@@ -222,8 +223,15 @@ in
       "wheel"
       # Allow configuring network stuff (this might be unnecessary)
       "networkmanager"
+      # Allow mouse-actions-gui to do it's magic
+      "input"
     ];
     packages = with pkgs; [
+      aseprite
+      comma
+      ydotool
+      mouse-actions-gui
+      google-chrome
       inputs.nixpkgs_olympus.legacyPackages.${system}.olympus
       bat
       firefox
