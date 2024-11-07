@@ -55,6 +55,12 @@ in
       device = "/dev/nvme0n1p2";
       preLVM = true;
     };
+    kernel.sysctl = {
+        # Allow IP forwarding, required for being a tailscale exit node:
+        # https://tailscale.com/kb/1103/exit-nodes?tab=linux
+        "net.ipv4.ip_forward" = 1;
+        "net.ipv6.conf.all.forwarding" = 1;
+    };
   };
   fileSystems."/boot".options = [ "umask=0077" ];
 
