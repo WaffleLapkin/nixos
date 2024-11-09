@@ -120,6 +120,7 @@ in
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # try to run electron apps with ozone so they scale normally
   #environment.sessionVariables.GDK_SCALE = "2"; # try to scale non-native running apps
   environment.sessionVariables.STEAM_FORCE_DESKTOPUI_SCALING = "1.5"; # force steam to scale
+  environment.variables.EDITOR = "hx"; # FIXME: use home-manager instead, for per-user config
 
   environment.etc = {
     "xdg/user-dirs.defaults".text = ''
@@ -265,6 +266,8 @@ in
       vesktop
       zed-editor
       difftastic
+      alacritty
+      helix
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           ms-vscode-remote.remote-ssh
