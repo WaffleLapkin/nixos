@@ -235,6 +235,7 @@ in
     ];
     packages = with pkgs; [
       aseprite
+      delta
       comma
       ydotool
       mouse-actions-gui
