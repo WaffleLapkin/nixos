@@ -218,6 +218,10 @@ in
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
+  fonts.packages = with pkgs; [
+    sarasa-gothic
+  ];
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   # Define a user account. Don't forget to set a password with passwd
