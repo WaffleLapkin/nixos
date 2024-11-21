@@ -9,10 +9,6 @@
   pkgs,
   ...
 }:
-let
-in
-#comic-mono = import ./custom-pkgs/comic-mono { inherit pkgs; };
-
 {
   imports = [
     # Include the results of the hardware scan.
