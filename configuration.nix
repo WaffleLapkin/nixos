@@ -232,6 +232,7 @@ in
       "input"
     ];
     packages = with pkgs; [
+      nil
       aseprite
       delta
       comma
