@@ -231,6 +231,7 @@
       nil
       aseprite
       delta
+      mergiraf
       comma
       ydotool
       mouse-actions-gui
