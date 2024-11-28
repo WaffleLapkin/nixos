@@ -1,6 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    # FIXME: unpin nixpkgs, once nvidia drivers work on unstable again
+    #nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOs/nixpkgs/ed2a1f9299cb6f3070c4468e03c989c4a558d4bf";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs_olympus.url = "github:Petingoso/nixpkgs/olympus";
     fenix.url = "github:nix-community/fenix";
