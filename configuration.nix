@@ -228,6 +228,8 @@
       "input"
     ];
     packages = with pkgs; [
+      jujutsu
+      ripgrep
       nil
       aseprite
       delta
