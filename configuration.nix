@@ -266,7 +266,7 @@
       zed-editor
       difftastic
       alacritty
-      helix
+      inputs.helix.packages.${pkgs.system}.default
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           ms-vscode-remote.remote-ssh

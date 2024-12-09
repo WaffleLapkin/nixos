@@ -7,6 +7,7 @@
     nixpkgs_olympus.url = "github:Petingoso/nixpkgs/olympus";
     fenix.url = "github:nix-community/fenix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    helix.url = "github:helix-editor/helix";
   };
 
   outputs =
