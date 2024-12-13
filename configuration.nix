@@ -228,6 +228,7 @@
       "input"
     ];
     packages = with pkgs; [
+      r2modman
       jujutsu
       ripgrep
       nil
