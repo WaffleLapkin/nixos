@@ -228,6 +228,7 @@
       "input"
     ];
     packages = with pkgs; [
+      yubikey-manager
       r2modman
       jujutsu
       ripgrep
@@ -324,6 +325,7 @@
     ];
   };
 
+  services.pcscd.enable = true;
   services.udev.extraHwdb = ''
     # Rebinds keys on elecom huge trackball
     #
