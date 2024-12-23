@@ -210,6 +210,7 @@
   # };
   fonts.packages = with pkgs; [
     sarasa-gothic
+    iosevka
   ];
 
   # Enable CUPS to print documents.
