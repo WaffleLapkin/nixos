@@ -246,7 +246,7 @@
       tree
       thunderbird
       telegram-desktop
-      discord
+      discord-canary # canary supports proper screen/sound sharing! <https://wiki.archlinux.org/title/Discord#Screen_sharing_with_audio>
       zulip
       mangohud
       mpv
