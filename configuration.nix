@@ -256,7 +256,11 @@
       wl-clipboard-rs # used by an MPV script I have which allows pasting URLs into mpv
       zoxide
       obsidian
-      obs-studio
+      (pkgs.wrapOBS {
+        plugins = with pkgs.obs-studio-plugins; [
+          obs-pipewire-audio-capture
+        ];
+      })
       zoom-us
       mdbook
       comic-mono
