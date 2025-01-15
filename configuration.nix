@@ -65,6 +65,7 @@
   hardware = {
     enableRedistributableFirmware = true;
     bluetooth.enable = true;
+    opengl.enable = true;
     nvidia = {
       open = false;
       modesetting.enable = true;
@@ -228,6 +229,8 @@
       "input"
     ];
     packages = with pkgs; [
+      ffmpeg-full
+      davinci-resolve
       yubikey-manager
       r2modman
       jujutsu
