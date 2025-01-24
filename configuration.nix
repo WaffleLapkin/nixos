@@ -210,6 +210,7 @@
   fonts.packages = with pkgs; [
     sarasa-gothic
     iosevka
+    monocraft
   ];
 
   # Enable CUPS to print documents.
