@@ -269,7 +269,6 @@
         ];
       })
       zoom-us
-      mdbook
       comic-mono
       krita
       transmission_4-qt
