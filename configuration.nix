@@ -210,13 +210,8 @@
   fonts.packages = with pkgs; [
     sarasa-gothic
     iosevka
-    atkinson-hyperlegible
-    # # Not yet packaged (apparently these were released 2025-02-10,
-    # # so 5 days ago as of writing this)
-    # # ref: https://github.com/NixOS/nixpkgs/issues/381689
-    # # ref: https://github.com/NixOS/nixpkgs/issues/381691
-    # atkinson-hyperlegible-next
-    # atkinson-hyperlegible-mono
+    atkinson-hyperlegible-next
+    atkinson-hyperlegible-mono
     monocraft
   ];
 
