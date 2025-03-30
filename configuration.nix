@@ -369,6 +369,8 @@
   services.btrbk.instances.local.settings = {
     volume."/" = {
       snapshot_dir = "btrbk_snapshots";
+      snapshot_preserve_min = "1w";
+      snapshot_preserve = "4w";
       subvolume = {
         etc = { };
         home = { };
