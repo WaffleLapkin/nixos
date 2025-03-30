@@ -231,11 +231,13 @@
       "input"
     ];
     packages = with pkgs; [
+      nix-output-monitor
       ffmpeg-full
       davinci-resolve
       yubikey-manager
       r2modman
       jujutsu
+      juicefs
       ripgrep
       nil
       aseprite
