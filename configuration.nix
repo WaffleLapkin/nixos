@@ -233,7 +233,7 @@
     packages = with pkgs; [
       nix-output-monitor
       ffmpeg-full
-      davinci-resolve
+      # davinci-resolve
       yubikey-manager
       r2modman
       jujutsu
