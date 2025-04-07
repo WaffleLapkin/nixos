@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nixpkgs_olympus.url = "github:Petingoso/nixpkgs/olympus";
     fenix.url = "github:nix-community/fenix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
@@ -12,6 +13,7 @@
     inputs@{
       self,
       nixpkgs,
+      chaotic,
       treefmt-nix,
       systems,
       ...
@@ -38,7 +40,10 @@
       #  };
       #});
       nixosConfigurations.polaris = nixpkgs.lib.nixosSystem {
-        modules = [ ./configuration.nix ];
+        modules = [
+          ./configuration.nix
+          chaotic.nixosModules.default
+        ];
         specialArgs = {
           inherit inputs;
         };
