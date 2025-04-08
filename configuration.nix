@@ -59,7 +59,7 @@
   time.timeZone = "Europe/Amsterdam";
 
   ## try to fix visual bugs :sob:
-  chaotic.mesa-git.enable = true;
+  #chaotic.mesa-git.enable = true;
   #chaotic.mesa-git.method = "replaceRuntimeDependencies";
 
   hardware = {
