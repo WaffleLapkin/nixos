@@ -217,7 +217,7 @@
 
   # Create a "plugdev" group.
   # Required for `pkgs.picoprobe-udev-rulesk` to properly work.
-  users.groups.plugdev = {};
+  users.groups.plugdev = { };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -255,9 +255,11 @@
       google-chrome
       inputs.nixpkgs_olympus.legacyPackages.${system}.olympus
       qt5.qtwayland # removes a warning from plover
-      (inputs.plover-flake.packages.${system}.plover.with-plugins (plugins: with plugins; [
+      (inputs.plover-flake.packages.${system}.plover.with-plugins (
+        plugins: with plugins; [
           plover-machine-hid
-      ]))
+        ]
+      ))
       bat
       firefox
       tree
