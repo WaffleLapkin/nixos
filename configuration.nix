@@ -254,6 +254,10 @@
       mouse-actions-gui
       google-chrome
       inputs.nixpkgs_olympus.legacyPackages.${system}.olympus
+      qt5.qtwayland # removes a warning from plover
+      (inputs.plover-flake.packages.${system}.plover.with-plugins (plugins: with plugins; [
+          plover-machine-hid
+      ]))
       bat
       firefox
       tree
@@ -343,6 +347,13 @@
 
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.picoprobe-udev-rules ];
+  services.udev.extraRules = ''
+    # A Crude hack in order to make all hidraws accessible to me.
+    # plover-hid needs this to work.
+    # ideally I'd select only the plover-hid compatible devices,
+    # but I don't think udev rules can select devices based on descriptors so rip.
+    KERNEL=="hidraw*" SUBSYSTEM=="hidraw" MODE="0660", GROUP="plugdev", TAG+="uaccess"
+  '';
   services.udev.extraHwdb = ''
     # Rebinds keys on elecom huge trackball
     #

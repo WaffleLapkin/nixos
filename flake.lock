@@ -37,6 +37,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "helix": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -122,6 +140,22 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1743583204,
+        "narHash": "sha256-F7n4+KOIfWrwoQjXrL2wD9RhFYLs2/GGe/MQY1sSdlE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2c8d3f48d33929642c1c12cd243df4cc7d2ce434",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1735554305,
         "narHash": "sha256-zExSA1i/b+1NMRhGGLtNfFGXgLtgo+dcuzHzaWA6w3Q=",
         "owner": "nixos",
@@ -152,6 +186,111 @@
         "type": "github"
       }
     },
+    "plover": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741240379,
+        "narHash": "sha256-DojJEuuVNd5/AR3DzmBe+1KJzFwy7GXstPabyZb6ArE=",
+        "owner": "openstenoproject",
+        "repo": "plover",
+        "rev": "1234ae6253f26f8e40f48eaa87a96ae26aa42c7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "openstenoproject",
+        "repo": "plover",
+        "type": "github"
+      }
+    },
+    "plover-flake": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_4",
+        "plover": "plover",
+        "plover-machine-hid": "plover-machine-hid",
+        "plover-stroke": "plover-stroke",
+        "plover2cat": "plover2cat",
+        "plover_plugins_registry": "plover_plugins_registry",
+        "rtf-tokenize": "rtf-tokenize"
+      },
+      "locked": {
+        "lastModified": 1743652156,
+        "narHash": "sha256-iSr2JstSJcjZNChi3dQ7LWDgn9OwK/COOb1Oyf2V2Ns=",
+        "owner": "dnaq",
+        "repo": "plover-flake",
+        "rev": "84849cc10fa10870b27b5aab2fcbcdbf9b5d61ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dnaq",
+        "repo": "plover-flake",
+        "type": "github"
+      }
+    },
+    "plover-machine-hid": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737480175,
+        "narHash": "sha256-gQAPJwOPQB11El2UyM3NOC7JlC0ppdkHiI0qEIFCEA0=",
+        "owner": "dnaq",
+        "repo": "plover-machine-hid",
+        "rev": "5f80c9e53dbc52980cf48b55b1c1278e4f0f025e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dnaq",
+        "repo": "plover-machine-hid",
+        "type": "github"
+      }
+    },
+    "plover-stroke": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1652559629,
+        "narHash": "sha256-A75OMzmEn0VmDAvmQCp6/7uptxzwWJTwsih3kWlYioA=",
+        "owner": "openstenoproject",
+        "repo": "plover_stroke",
+        "rev": "e717a1983b58dcba644153a542dbf8514425a39b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "openstenoproject",
+        "repo": "plover_stroke",
+        "type": "github"
+      }
+    },
+    "plover2cat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740191225,
+        "narHash": "sha256-rAHNYkmEHLvnsKBkirCizGYJNgDzu1XEnLh54fmTW/U=",
+        "owner": "greenwyrt",
+        "repo": "plover2CAT",
+        "rev": "c5187632e5e7a633c141704b1a59d9a5703ecd73",
+        "type": "github"
+      },
+      "original": {
+        "owner": "greenwyrt",
+        "repo": "plover2CAT",
+        "type": "github"
+      }
+    },
+    "plover_plugins_registry": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741203979,
+        "narHash": "sha256-/kpVH28I8netfbWrpytiaPy67OoJOfrohwD1FeYjDV8=",
+        "owner": "openstenoproject",
+        "repo": "plover_plugins_registry",
+        "rev": "3b43217796844f27ecf8ad480c371c3a31ab2c95",
+        "type": "github"
+      },
+      "original": {
+        "owner": "openstenoproject",
+        "repo": "plover_plugins_registry",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fenix": "fenix",
@@ -159,8 +298,25 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs_olympus": "nixpkgs_olympus",
-        "systems": "systems_2",
+        "plover-flake": "plover-flake",
+        "systems": "systems_3",
         "treefmt-nix": "treefmt-nix"
+      }
+    },
+    "rtf-tokenize": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633915168,
+        "narHash": "sha256-zwD2sRYTY1Kmm/Ag2hps9VRdUyQoi4zKtDPR+F52t9A=",
+        "owner": "openstenoproject",
+        "repo": "rtf_tokenize",
+        "rev": "509b009b97077d5abcebe53d46ca6b67c3438a2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "openstenoproject",
+        "repo": "rtf_tokenize",
+        "type": "github"
       }
     },
     "rust-analyzer-src": {
@@ -226,13 +382,28 @@
         "type": "github"
       },
       "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
         "id": "systems",
         "type": "indirect"
       }
     },
     "treefmt-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1743748085,
