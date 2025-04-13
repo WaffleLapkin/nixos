@@ -1,0 +1,38 @@
+From fdf51e7bb74ba4388f5dd6151d1a94e09563011b Mon Sep 17 00:00:00 2001
+From: Waffle Lapkin <waffle.lapkin@gmail.com>
+Date: Sun, 13 Apr 2025 20:23:31 +0200
+Subject: [PATCH] Fix display of HID descriptors
+
+The switch from hash tables to arrays + linear lookups created a bug --
+`names_genericstrtable` uses two variables (`h` and `t`) inconsistently
+in a loop, causing it to always return `NULL`, except for the first
+element in the array table.
+
+This in turn causes everything (except "Usage Page") in the HID
+descriptors to be `(null)` instead of the right string.
+---
+ names.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/names.c b/names.c
+index b47532f..6c25404 100644
+--- a/names.c
++++ b/names.c
+@@ -35,11 +35,9 @@ static struct udev_hwdb *hwdb = NULL;
+ static const char *names_genericstrtable(const struct genericstrtable *t,
+ 					 unsigned int idx)
+ {
+-	const struct genericstrtable *h;
+-
+-	for (h = t; t->name; t++)
+-		if (h->num == idx)
+-			return h->name;
++	for (; t->name; t++)
++		if (t->num == idx)
++			return t->name;
+ 	return NULL;
+ }
+ 
+-- 
+2.48.1
+

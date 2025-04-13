@@ -237,6 +237,7 @@
       "plugdev"
     ];
     packages = with pkgs; [
+      (callPackage ./custom-pkgs/usbutils/package.nix { })
       nix-output-monitor
       ffmpeg-full
       # davinci-resolve
