@@ -215,6 +215,10 @@
     monocraft
   ];
 
+  # Create a "plugdev" group.
+  # Required for `pkgs.picoprobe-udev-rulesk` to properly work.
+  users.groups.plugdev = {};
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   # Define a user account. Don't forget to set a password with passwd
@@ -229,6 +233,8 @@
       "networkmanager"
       # Allow mouse-actions-gui to do it's magic
       "input"
+      # To be able to interact with probes
+      "plugdev"
     ];
     packages = with pkgs; [
       nix-output-monitor
@@ -336,6 +342,7 @@
   };
 
   services.pcscd.enable = true;
+  services.udev.packages = [ pkgs.picoprobe-udev-rules ];
   services.udev.extraHwdb = ''
     # Rebinds keys on elecom huge trackball
     #
