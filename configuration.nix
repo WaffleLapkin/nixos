@@ -209,10 +209,12 @@
   # };
   fonts.packages = with pkgs; [
     sarasa-gothic
+    libertinus
     iosevka
     atkinson-hyperlegible-next
     atkinson-hyperlegible-mono
     monocraft
+    raleway
   ];
 
   # Create a "plugdev" group.
@@ -237,6 +239,9 @@
       "plugdev"
     ];
     packages = with pkgs; [
+      jq
+      pdfpc
+      typst
       tinymist
       signal-desktop
       libreoffice-qt6-fresh
@@ -259,7 +264,7 @@
       google-chrome
       inputs.nixpkgs_olympus.legacyPackages.${system}.olympus
       qt5.qtwayland # removes a warning from plover
-      (inputs.plover-flake.packages.${system}.plover.with-plugins (
+      (inputs.plover-flake.packages.${system}.plover.withPlugins (
         plugins: with plugins; [
           plover-machine-hid
         ]
