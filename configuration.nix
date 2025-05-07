@@ -237,6 +237,9 @@
       "plugdev"
     ];
     packages = with pkgs; [
+      tinymist
+      signal-desktop
+      libreoffice-qt6-fresh
       (callPackage ./custom-pkgs/usbutils/package.nix { })
       nix-output-monitor
       ffmpeg-full
