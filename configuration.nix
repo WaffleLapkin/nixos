@@ -371,8 +371,6 @@
 
     # https://discourse.nixos.org/t/using-wireshark-as-an-unprivileged-user-to-analyze-usb-traffic/38011
     SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
-  };
-
   '';
   services.udev.extraHwdb = ''
     # Rebinds keys on elecom huge trackball
