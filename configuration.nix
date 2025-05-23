@@ -168,6 +168,7 @@
     fish.enable = true;
     _1password-gui.enable = true;
     direnv.enable = true;
+    wireshark.enable = true;
 
     steam = {
       enable = true;
@@ -220,6 +221,7 @@
   # Create a "plugdev" group.
   # Required for `pkgs.picoprobe-udev-rulesk` to properly work.
   users.groups.plugdev = { };
+  users.groups.wireshark = { };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -237,6 +239,8 @@
       "input"
       # To be able to interact with probes
       "plugdev"
+      # shark :3
+      "wireshark"
     ];
     packages = with pkgs; [
       jq
@@ -364,6 +368,11 @@
     # ideally I'd select only the plover-hid compatible devices,
     # but I don't think udev rules can select devices based on descriptors so rip.
     KERNEL=="hidraw*" SUBSYSTEM=="hidraw" MODE="0660", GROUP="plugdev", TAG+="uaccess"
+
+    # https://discourse.nixos.org/t/using-wireshark-as-an-unprivileged-user-to-analyze-usb-traffic/38011
+    SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
+  };
+
   '';
   services.udev.extraHwdb = ''
     # Rebinds keys on elecom huge trackball
