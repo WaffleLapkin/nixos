@@ -166,7 +166,13 @@
 
   programs = {
     fish.enable = true;
-    _1password-gui.enable = true;
+
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      # this makes system auth etc. work properly
+      polkitPolicyOwners = [ "wffl" ];
+    };
     direnv.enable = true;
     wireshark.enable = true;
 
@@ -243,6 +249,9 @@
       "wireshark"
     ];
     packages = with pkgs; [
+      heroic # can lauch epic games store's games
+      magic-wormhole
+      age
       jq
       pdfpc
       typst
