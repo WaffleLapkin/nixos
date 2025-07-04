@@ -275,7 +275,7 @@
       ydotool
       mouse-actions-gui
       google-chrome
-      inputs.nixpkgs_olympus.legacyPackages.${system}.olympus
+      olympus
       qt5.qtwayland # removes a warning from plover
       (inputs.plover-flake.packages.${system}.plover.withPlugins (
         plugins: with plugins; [

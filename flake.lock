@@ -133,22 +133,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_olympus": {
-      "locked": {
-        "lastModified": 1746730547,
-        "narHash": "sha256-Q4dg3WWIz+b7KNBh8ouMCfAlEsuJStTFIcrC3d46viE=",
-        "owner": "Petingoso",
-        "repo": "nixpkgs",
-        "rev": "3be662c31b6cc04b10043641f4ccfc97c8a34704",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Petingoso",
-        "ref": "olympus",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "plover": {
       "flake": false,
       "locked": {
@@ -259,7 +243,6 @@
         "helix": "helix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs_olympus": "nixpkgs_olympus",
         "plover-flake": "plover-flake",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix"

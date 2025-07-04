@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixpkgs_olympus.url = "github:Petingoso/nixpkgs/olympus";
     # nixpkgs_plover.url = "github:FirelightFlagboy/nixpkgs/update-plover-4.0.0.dev12";
     plover-flake.url = "github:dnaq/plover-flake";
     fenix.url = "github:nix-community/fenix";
