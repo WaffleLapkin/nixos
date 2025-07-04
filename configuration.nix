@@ -205,7 +205,13 @@
     # This should *not* be required, because plasma should enable it itself,
     # but apperently this actually makes a difference somehow...
     kdePackages.xdg-desktop-portal-kde
+    
+    # kills astra with a knife :thumbs_up:
+    pkgs.flatpak-builder
   ];
+
+  # kills astra with a knife :thumbs_up:
+  services.flatpak.enable = true;
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
