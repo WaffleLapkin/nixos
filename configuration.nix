@@ -249,6 +249,7 @@
       "wireshark"
     ];
     packages = with pkgs; [
+      meld
       heroic # can lauch epic games store's games
       magic-wormhole
       age
