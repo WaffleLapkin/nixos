@@ -254,6 +254,7 @@
       magic-wormhole
       age
       jq
+      atuin
       pdfpc
       typst
       tinymist
