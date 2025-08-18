@@ -241,8 +241,6 @@
       "wheel"
       # Allow configuring network stuff (this might be unnecessary)
       "networkmanager"
-      # Allow mouse-actions-gui to do it's magic
-      "input"
       # To be able to interact with probes
       "plugdev"
       # shark :3
@@ -250,7 +248,6 @@
     ];
     packages = with pkgs; [
       meld
-      heroic # can lauch epic games store's games
       magic-wormhole
       age
       jq
@@ -275,7 +272,6 @@
       mergiraf
       comma
       ydotool
-      mouse-actions-gui
       google-chrome
       olympus
       qt5.qtwayland # removes a warning from plover
