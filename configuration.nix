@@ -247,6 +247,7 @@
       "wireshark"
     ];
     packages = with pkgs; [
+      presenterm
       meld
       magic-wormhole
       age
