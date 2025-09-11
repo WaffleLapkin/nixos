@@ -99,12 +99,14 @@
   #services.displayManager.sddm.wayland.enable = true;
   services.xserver = {
     enable = true;
-    #desktopManager.gnome.enable = true; # I don't necesserily need gnome and it adds a ton of annoying packages
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
     videoDrivers = [ "nvidia" ];
     #videoDrivers = lib.mkForce [ "modesetting" ];
     xkb.layout = "us,ru";
+  };
+  services.displayManager = {
+    #gnome.enable = true; # I don't necesserily need gnome and it adds a ton of annoying packages
+    gdm.enable = true;
+    gdm.wayland = true;
   };
   #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass"; # https://github.com/NixOS/nixpkgs/issues/75867
   #hardware.pulseaudio.enable = false; # gnome-only workaround?
