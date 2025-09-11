@@ -194,18 +194,98 @@
       };
     };
   };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # The grouping is extremely arbitrary and potentially useless,
+    # but I hate it less when they are groupped so here we go.
+    
+    # CLI
+    alacritty
     htop
+    ripgrep
+    (callPackage ./custom-pkgs/usbutils/package.nix { })
+    age
+    jq
+    atuin
+    bat
+    tree
+    zoxide
+    fzf
+    magic-wormhole
+    presenterm
+
+    # text editing
+    inputs.helix.packages.${pkgs.system}.default
+    zed-editor
+
+    # nix
+    comma
+    nix-output-monitor
+    nil # nix language server
+    
+    # VCS
     git
-    micro
-    asusctl
+    jujutsu
+    delta
+
+    # compilation & language support
+    meld
+    tinymist # typst language server
+
+    # social
+    signal-desktop
+    telegram-desktop
+    zulip
+    zoom-us
+    # Discord client with working screen sharing under wayland/plasma.
+    # (I was told in sway the default client works too)
+    # (this could get me banned but ugh)
+    # (discord proper now can also do that, but eeeegh)
+    vesktop
+
+    # gaming
+    r2modman
+    olympus
     wineWowPackages.waylandFull
+    mangohud
+
+    # multimedia
+    emulsion
+    (pkgs.wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-pipewire-audio-capture
+      ];
+    })
+    mpv
+    wl-clipboard-rs # used by an MPV script I have which allows pasting URLs into mpv
+    aseprite
+    krita
+    # davinci-resolve
+    ffmpeg-full
+    
+    # misc
+    asusctl
     # Makes screen share through FF work.
     # This should *not* be required, because plasma should enable it itself,
     # but apperently this actually makes a difference somehow...
     kdePackages.xdg-desktop-portal-kde
+    qt5.qtwayland # removes a warning from plover
+    (inputs.plover-flake.packages.${system}.plover.withPlugins (
+      plugins: with plugins; [
+        plover-machine-hid
+      ]
+    ))
+    typst
+    yubikey-manager
+    ydotool
+    google-chrome
+    firefox
+    thunderbird
+    obsidian
+    comic-mono
+    transmission_4-qt    
   ];
 
   # Select internationalisation properties.
@@ -215,6 +295,7 @@
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
+
   fonts.packages = with pkgs; [
     sarasa-gothic
     libertinus
@@ -226,133 +307,30 @@
   ];
 
   # Create a "plugdev" group.
-  # Required for `pkgs.picoprobe-udev-rulesk` to properly work.
+  # Required for `pkgs.picoprobe-udev-rules` to properly work.
   users.groups.plugdev = { };
   users.groups.wireshark = { };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-  # Define a user account. Don't forget to set a password with passwd
-  users.users.wffl = {
-    isNormalUser = true;
-    shell = pkgs.fish;
-    description = "waffle <wffl@riseup.net>";
-    extraGroups = [
-      # Enable sudo for the user.
-      "wheel"
-      # Allow configuring network stuff (this might be unnecessary)
-      "networkmanager"
-      # To be able to interact with probes
-      "plugdev"
-      # shark :3
-      "wireshark"
-    ];
-    packages = with pkgs; [
-      presenterm
-      meld
-      magic-wormhole
-      age
-      jq
-      atuin
-      typst
-      tinymist
-      signal-desktop
-      (callPackage ./custom-pkgs/usbutils/package.nix { })
-      nix-output-monitor
-      ffmpeg-full
-      # davinci-resolve
-      yubikey-manager
-      r2modman
-      jujutsu
-      ripgrep
-      nil # nix language server
-      aseprite
-      delta
-      comma
-      ydotool
-      google-chrome
-      olympus
-      qt5.qtwayland # removes a warning from plover
-      (inputs.plover-flake.packages.${system}.plover.withPlugins (
-        plugins: with plugins; [
-          plover-machine-hid
-        ]
-      ))
-      bat
-      firefox
-      tree
-      thunderbird
-      telegram-desktop
-      zulip
-      mangohud
-      mpv
-      wl-clipboard-rs # used by an MPV script I have which allows pasting URLs into mpv
-      zoxide
-      obsidian
-      (pkgs.wrapOBS {
-        plugins = with pkgs.obs-studio-plugins; [
-          obs-pipewire-audio-capture
-        ];
-      })
-      zoom-us
-      comic-mono
-      krita
-      transmission_4-qt
-      fzf
-      emulsion
-      # Discord client with working screen sharing under wayland/plasma.
-      # (I was told in sway the default client works too)
-      # (this could get me banned but ugh)
-      # (discord proper now can also do that, but eeeegh)
-      vesktop
-      zed-editor
-      alacritty
-      inputs.helix.packages.${pkgs.system}.default
-      (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-          ms-vscode-remote.remote-ssh
-          #a5huynh.vscode-ron
-          #alefragnani.bookmarks
-          #attilabuti.brainfuck-syntax
-          #coalaura.ctrl-s
-          #dhall.dhall-lang
-          #dhall.vscode-dhall-lsp-server
-          eamodio.gitlens
-          gruntfuggly.todo-tree
-          #haskell.haskell
-          #huytd.tokyo-city
-          #james-yu.latex-workshop
-          #justusadam.language-haskell
-          k--kato.intellij-idea-keybindings
-          kahole.magit
-          #kshetline.ligatures-limited
-          #mechatroner.rainbow-csv
-          #ms-vscode.cpptools
-          ms-vsliveshare.vsliveshare
-          #ritwickdey.liveserver
-          rust-lang.rust-analyzer
-          serayuzgur.crates
-          streetsidesoftware.code-spell-checker
-          #streetsidesoftware.code-spell-checker-dutch
-          #streetsidesoftware.code-spell-checker-russian
-          #tabnine.tabnine-vscode
-          tamasfe.even-better-toml
-          #tht13.html-preview-vscode
-          usernamehw.errorlens
-          mkhl.direnv
-          #wakatime.vscode-wakatime
-          #wcrichton.flowistry
-          #znck.grammarly
-        ]; # ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ #leonardssh.vscord, macabeus.vscode-fluent, matklad.pale-fire, ms-vscode-remote.remote-ssh-edit, ms-vscode.remote-explorer)
-        #{
-        #  name = "remote-ssh-edit";
-        #  publisher = "ms-vscode-remote";
-        #  version = "0.47.2";
-        #  sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-        #}
-        #];
-      })
-    ];
+
+  users = {
+    defaultUserShell = pkgs.fish;
+    users.wffl = {
+      isNormalUser = true;
+      description = "waffle";
+      extraGroups = [
+        # Enable sudo for the user.
+        "wheel"
+        # Allow configuring network stuff (this might be unnecessary)
+        "networkmanager"
+        # To be able to interact with probes
+        "plugdev"
+        # shark :3
+        "wireshark"
+      ];
+      packages = [];
+    };
   };
 
   services.pcscd.enable = true;
