@@ -193,7 +193,7 @@
 
     direnv = {
       enable = true; # this conflicts with lix for some reason?...
-      package = pkgs.lixPackageSets.stable.nix-direnv;
+      nix-direnv.package = pkgs.lixPackageSets.stable.nix-direnv;
     };
 
     wireshark.enable = true;
