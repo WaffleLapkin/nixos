@@ -27,7 +27,21 @@
   ];
 
   nixpkgs.config.allowUnfree = true; # we want drivers lol
-  nixpkgs.overlays = [ inputs.fenix.overlays.default ];
+  nixpkgs.overlays = [
+    inputs.fenix.overlays.default
+    # https://lix.systems/add-to-config/
+    (final: prev: {
+      inherit (final.lixPackageSets.stable)
+        nixpkgs-review
+        nix-direnv
+        nix-eval-jobs
+        nix-fast-build
+        colmena
+        ;
+    })
+  ];
+
+  nix.package = pkgs.lixPackageSets.stable.lix;
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -177,7 +191,7 @@
       # this makes system auth etc. work properly
       polkitPolicyOwners = [ "wffl" ];
     };
-    direnv.enable = true;
+    # direnv.enable = true; # this conflicts with lix for some reason?...
     wireshark.enable = true;
 
     steam = {
