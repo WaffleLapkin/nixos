@@ -254,11 +254,9 @@
       age
       jq
       atuin
-      pdfpc
       typst
       tinymist
       signal-desktop
-      libreoffice-qt6-fresh
       (callPackage ./custom-pkgs/usbutils/package.nix { })
       nix-output-monitor
       ffmpeg-full
@@ -266,12 +264,10 @@
       yubikey-manager
       r2modman
       jujutsu
-      juicefs
       ripgrep
-      nil
+      nil # nix language server
       aseprite
       delta
-      mergiraf
       comma
       ydotool
       google-chrome
@@ -287,7 +283,6 @@
       tree
       thunderbird
       telegram-desktop
-      discord-canary # canary supports proper screen/sound sharing! <https://wiki.archlinux.org/title/Discord#Screen_sharing_with_audio>
       zulip
       mangohud
       mpv
@@ -308,9 +303,9 @@
       # Discord client with working screen sharing under wayland/plasma.
       # (I was told in sway the default client works too)
       # (this could get me banned but ugh)
+      # (discord proper now can also do that, but eeeegh)
       vesktop
       zed-editor
-      difftastic
       alacritty
       inputs.helix.packages.${pkgs.system}.default
       (vscode-with-extensions.override {
@@ -357,15 +352,6 @@
         #}
         #];
       })
-      (fenix.complete.withComponents [
-        "rustc"
-        "cargo"
-        "rustfmt"
-        "rust-src"
-        "rust-analyzer"
-        "clippy"
-        "miri"
-      ])
     ];
   };
 
