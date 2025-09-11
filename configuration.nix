@@ -33,7 +33,6 @@
     (final: prev: {
       inherit (final.lixPackageSets.stable)
         nixpkgs-review
-        nix-direnv
         nix-eval-jobs
         nix-fast-build
         colmena
@@ -191,7 +190,12 @@
       # this makes system auth etc. work properly
       polkitPolicyOwners = [ "wffl" ];
     };
-    # direnv.enable = true; # this conflicts with lix for some reason?...
+
+    direnv = {
+      enable = true; # this conflicts with lix for some reason?...
+      package = pkgs.lixPackageSets.stable.nix-direnv;
+    };
+
     wireshark.enable = true;
 
     steam = {
