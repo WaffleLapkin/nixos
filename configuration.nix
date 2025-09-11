@@ -200,7 +200,7 @@
   environment.systemPackages = with pkgs; [
     # The grouping is extremely arbitrary and potentially useless,
     # but I hate it less when they are groupped so here we go.
-    
+
     # CLI
     alacritty
     htop
@@ -224,7 +224,7 @@
     comma
     nix-output-monitor
     nil # nix language server
-    
+
     # VCS
     git
     jujutsu
@@ -264,7 +264,7 @@
     krita
     # davinci-resolve
     ffmpeg-full
-    
+
     # misc
     asusctl
     # Makes screen share through FF work.
@@ -285,7 +285,7 @@
     thunderbird
     obsidian
     comic-mono
-    transmission_4-qt    
+    transmission_4-qt
   ];
 
   # Select internationalisation properties.
@@ -329,7 +329,7 @@
         # shark :3
         "wireshark"
       ];
-      packages = [];
+      packages = [ ];
     };
   };
 
