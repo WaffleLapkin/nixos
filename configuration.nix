@@ -281,7 +281,7 @@
     })
     mpv
     wl-clipboard-rs # used by an MPV script I have which allows pasting URLs into mpv
-    aseprite
+    # aseprite # broken currently...
     krita
     # davinci-resolve
     ffmpeg-full
