@@ -34,6 +34,7 @@
             ./machines/${hostname}
           ];
           specialArgs = {
+            inherit hostname;
             inherit inputs;
           };
         };

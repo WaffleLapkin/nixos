@@ -4,18 +4,13 @@
 
 {
   inputs,
-  config,
-  lib,
   pkgs,
+  hostname,
   ...
 }:
 {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
     ./friends.nix
-    inputs.nixos-hardware.nixosModules.asus-flow-gv302x-amdgpu
-    inputs.nixos-hardware.nixosModules.asus-flow-gv302x-nvidia
   ];
 
   nix.settings.experimental-features = [
@@ -44,11 +39,6 @@
     loader.systemd-boot.memtest86.enable = true;
     loader.efi.canTouchEfiVariables = true;
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [
-      # disables the watchdogs so that I can actually turn off the laptop normally lol :|
-      "nowatchdog"
-      "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
-    ];
     initrd.luks.devices.nixos-enc = {
       device = "/dev/nvme0n1p2";
       preLVM = true;
@@ -56,7 +46,7 @@
   };
   fileSystems."/boot".options = [ "umask=0077" ];
 
-  networking.hostName = "polaris"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   systemd.services.NetworkManager-wait-online.enable = false; # workaround for a bug <https://github.com/NixOS/nixpkgs/issues/180175>
   time.timeZone = "Europe/Amsterdam";
@@ -72,14 +62,6 @@
       enable = true;
       enable32Bit = true;
     };
-    sensor.iio.enable = true; # auto rotate screen?
-  };
-
-  # In theory this allows me to change asus weird stuff
-  # (in practice it doesn't)
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
   };
 
   # DE
