@@ -23,6 +23,26 @@
 
       # Eval the treefmt modules from ./treefmt.nix
       treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+
+      mkNixosConfiguration =
+        hostname:
+        { system }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./configuration.nix
+            ./machines/${hostname}
+          ];
+          specialArgs = {
+            inherit inputs;
+          };
+        };
+
+      machines = {
+        polaris = {
+          system = "x86_64-linux";
+        };
+      };
     in
     {
       # for `nix fmt`
@@ -31,18 +51,7 @@
       checks = eachSystem (pkgs: {
         formatting = treefmtEval.${pkgs.system}.config.build.check self;
       });
-      # for `nix run .#fmt` # I could not figure out what to write in `program = ` :(
-      #apps = eachSystem (pkgs: {
-      #  fmt = {
-      #    type = "app";
-      #    program = "treefmt";
-      #  };
-      #});
-      nixosConfigurations.polaris = nixpkgs.lib.nixosSystem {
-        modules = [ ./configuration.nix ];
-        specialArgs = {
-          inherit inputs;
-        };
-      };
+
+      nixosConfigurations = builtins.mapAttrs mkNixosConfiguration machines;
     };
 }
