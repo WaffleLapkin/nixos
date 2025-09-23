@@ -14,11 +14,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./friends.nix
-    inputs.nixos-hardware.nixosModules.asus-battery
-    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
-    inputs.nixos-hardware.nixosModules.common-pc-laptop
-    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    inputs.nixos-hardware.nixosModules.asus-flow-gv302x-amdgpu
+    inputs.nixos-hardware.nixosModules.asus-flow-gv302x-nvidia
   ];
 
   nix.settings.experimental-features = [
@@ -51,15 +48,6 @@
       # disables the watchdogs so that I can actually turn off the laptop normally lol :|
       "nowatchdog"
       "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
-      # disable psr (which causes amdgpu crashes) (0x18B & ~0x8)
-      "amdgpu.dcfeaturemask=0x183"
-      # Weird hack to fix fucking artifacts.
-      # Without it I currently (as of 2024-07-20) get a lot of artifacts when windows are updating.
-      # The artifacts are most prevalent when there are multiple windows open and in firefox and steam.
-      # This doesn't fix the artifacts fully -- I still get them in the control panel (or whatever
-      # it's called) when opening firefox. /But/, it does make it possible for me to use my computer,
-      # so a win is a win ig.
-      "amdgpu.sg_display=0"
     ];
     initrd.luks.devices.nixos-enc = {
       device = "/dev/nvme0n1p2";
@@ -80,18 +68,6 @@
   hardware = {
     enableRedistributableFirmware = true;
     bluetooth.enable = true;
-    nvidia = {
-      open = false;
-      modesetting.enable = true;
-      prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-        nvidiaBusId = "PCI:01:0:0";
-        amdgpuBusId = "PCI:69:0:0"; # nice
-      };
-    };
     graphics = {
       enable = true;
       enable32Bit = true;
