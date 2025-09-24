@@ -46,6 +46,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
               home-manager.extraSpecialArgs = specialArgs;
 
               home-manager.users."${specialArgs.params.username}" = import ./home;
