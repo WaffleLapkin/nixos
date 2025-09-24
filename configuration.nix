@@ -232,8 +232,6 @@
     # davinci-resolve
     ffmpeg-full
 
-    # misc
-    asusctl
     # Makes screen share through FF work.
     # This should *not* be required, because plasma should enable it itself,
     # but apperently this actually makes a difference somehow...

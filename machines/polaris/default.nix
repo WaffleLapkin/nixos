@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -18,6 +18,10 @@
   #   enable = true;
   #   enableUserService = true;
   # };
+
+  environment.systemPackages = [
+    pkgs.asusctl
+  ];
 
   # auto rotate screen?
   # (I don't think this works... monitor-sensor reports correct stuff but KDE does not care)
