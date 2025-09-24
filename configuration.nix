@@ -49,7 +49,6 @@
   networking.hostName = hostname; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   systemd.services.NetworkManager-wait-online.enable = false; # workaround for a bug <https://github.com/NixOS/nixpkgs/issues/180175>
-  time.timeZone = "Europe/Amsterdam";
 
   ## try to fix visual bugs :sob:
   #chaotic.mesa-git.enable = true;
@@ -269,14 +268,6 @@
     comic-mono
     transmission_4-qt
   ];
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
 
   fonts.packages = with pkgs; [
     sarasa-gothic

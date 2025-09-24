@@ -31,6 +31,7 @@
           inherit system;
           modules = [
             ./configuration.nix
+            ./common
             ./machines/${hostname}
           ];
           specialArgs = {
