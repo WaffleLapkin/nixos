@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -20,7 +20,7 @@
   # };
 
   environment.systemPackages = [
-    pkgs.asusctl
+    # pkgs.asusctl
   ];
 
   # auto rotate screen?
