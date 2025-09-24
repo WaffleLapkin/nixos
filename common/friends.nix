@@ -2,7 +2,7 @@
 # <https://github.com/P1n3appl3/config/blob/a5eac974ad6be0b3abb3fdda85e98b63fd5b24c2/mixins/nixos/friends.nix>.
 #
 # thanks julia <3
-{ ... }:
+{ lib, params, ... }:
 let
   user = keys: {
     initialPassword = "changethis";
@@ -11,7 +11,7 @@ let
     openssh.authorizedKeys.keys = keys;
   };
 in
-{
+lib.mkIf params.friends {
   users.groups.cute = { };
   users.users = {
     aria =

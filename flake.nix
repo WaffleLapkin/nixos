@@ -26,7 +26,7 @@
 
       mkNixosConfiguration =
         hostname:
-        { system }:
+        params@{ system, ... }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
@@ -37,12 +37,14 @@
           specialArgs = {
             inherit hostname;
             inherit inputs;
+            params = (import ./params.nix) // params;
           };
         };
 
       machines = {
         polaris = {
           system = "x86_64-linux";
+          friends = true;
         };
       };
     in
