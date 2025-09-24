@@ -14,10 +14,10 @@
 
   # In theory this allows me to change asus weird stuff
   # (in practice it doesn't)
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
-  };
+  # services.asusd = {
+  #   enable = true;
+  #   enableUserService = true;
+  # };
 
   # auto rotate screen?
   # (I don't think this works... monitor-sensor reports correct stuff but KDE does not care)
