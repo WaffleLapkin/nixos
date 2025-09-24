@@ -21,4 +21,6 @@
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
+
+  services.xserver.xkb.layout = "us,ru";
 }

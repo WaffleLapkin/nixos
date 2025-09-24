@@ -57,7 +57,6 @@
     enable = true;
     videoDrivers = [ "nvidia" ];
     #videoDrivers = lib.mkForce [ "modesetting" ];
-    xkb.layout = "us,ru";
   };
   services.displayManager = {
     #gnome.enable = true; # I don't necesserily need gnome and it adds a ton of annoying packages
