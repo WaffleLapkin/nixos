@@ -6,6 +6,7 @@
   inputs,
   pkgs,
   hostname,
+  params,
   ...
 }:
 {
@@ -105,7 +106,7 @@
   services.openssh.enable = true;
   services.syncthing = {
     enable = true;
-    user = "wffl";
+    user = params.username;
     dataDir = "/home/wffl/documents";
     configDir = "/home/wffl/.config/syncthing";
     # FIXME: configure declaratively, once I'm sure I'm not going to leak private stuff this way lol
@@ -133,7 +134,7 @@
     _1password-gui = {
       enable = true;
       # this makes system auth etc. work properly
-      polkitPolicyOwners = [ "wffl" ];
+      polkitPolicyOwners = [ params.username ];
     };
 
     direnv = {
@@ -271,25 +272,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  users = {
-    defaultUserShell = pkgs.fish;
-    users.wffl = {
-      isNormalUser = true;
-      description = "waffle";
-      extraGroups = [
-        # Enable sudo for the user.
-        "wheel"
-        # Allow configuring network stuff (this might be unnecessary)
-        "networkmanager"
-        # To be able to interact with probes
-        "plugdev"
-        # shark :3
-        "wireshark"
-      ];
-      packages = [ ];
-    };
-  };
 
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.picoprobe-udev-rules ];
