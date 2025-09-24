@@ -2,6 +2,8 @@
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # nixpkgs_plover.url = "github:FirelightFlagboy/nixpkgs/update-plover-4.0.0.dev12";
     plover-flake.url = "github:dnaq/plover-flake";
     fenix.url = "github:nix-community/fenix";
@@ -27,17 +29,30 @@
       mkNixosConfiguration =
         hostname:
         params@{ system, ... }:
+        let
+          specialArgs = {
+            inherit hostname;
+            inherit inputs;
+            pkgs-unstable = inputs.nixpkgs.legacyPackages.${system};
+            params = (import ./params.nix) // params;
+          };
+        in
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./common
             ./machines/${hostname}
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+
+              home-manager.users."${specialArgs.params.username}" = import ./home;
+            }
+
           ];
-          specialArgs = {
-            inherit hostname;
-            inherit inputs;
-            params = (import ./params.nix) // params;
-          };
+          inherit specialArgs;
         };
 
       machines = {
