@@ -3,4 +3,5 @@
   name = "waffle";
 
   friends = false;
+  gamer = true;
 }

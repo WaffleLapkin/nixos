@@ -3,6 +3,7 @@
   imports = [
     ./locale.nix
     ./friends.nix
+    ./gamer.nix
   ];
 
   nix.settings.warn-dirty = false;

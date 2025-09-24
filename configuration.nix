@@ -67,7 +67,6 @@
   #hardware.pulseaudio.enable = false; # gnome-only workaround?
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # try to run electron apps with ozone so they scale normally
   #environment.sessionVariables.GDK_SCALE = "2"; # try to scale non-native running apps
-  environment.sessionVariables.STEAM_FORCE_DESKTOPUI_SCALING = "1.5"; # force steam to scale
   environment.variables.EDITOR = "hx"; # FIXME: use home-manager instead, for per-user config
 
   environment.etc = {
@@ -142,23 +141,6 @@
     };
 
     wireshark.enable = true;
-
-    steam = {
-      enable = true;
-      #remotePlay.openFirewall = true;
-      #dedicatedServer.openFirewall = true;
-      gamescopeSession.enable = true;
-      package = pkgs.steam.override {
-        extraPkgs =
-          pkgs: with pkgs; [
-            # Needed for gamescope to work
-            # <https://www.reddit.com/r/NixOS/comments/1bmj4mz/gamescope_and_steam/>
-            # <https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1229444338>
-            libkrb5
-            keyutils
-          ];
-      };
-    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -210,12 +192,6 @@
     # (this could get me banned but ugh)
     # (discord proper now can also do that, but eeeegh)
     vesktop
-
-    # gaming
-    r2modman
-    olympus
-    wineWowPackages.waylandFull
-    mangohud
 
     # multimedia
     emulsion
