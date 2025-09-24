@@ -30,7 +30,6 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./configuration.nix
             ./common
             ./machines/${hostname}
           ];
