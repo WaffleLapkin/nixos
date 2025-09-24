@@ -16,9 +16,6 @@
   ];
 
   nixpkgs.config.allowUnfree = true; # we want drivers lol
-  nixpkgs.overlays = [
-    inputs.fenix.overlays.default
-  ];
 
   boot = {
     loader.systemd-boot.enable = true;
