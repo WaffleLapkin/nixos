@@ -23,8 +23,8 @@ in
     enable = true;
     package = pkgs-unstable.jujutsu;
     settings = {
-      user.email = "Waffle Lapkin";
-      user.name = "waffle.lapkin@gmail.com";
+      user.name = "Waffle Lapkin";
+      user.email = "waffle.lapkin@gmail.com";
 
       ui.default-command = [
         "log"
