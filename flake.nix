@@ -61,6 +61,11 @@
           system = "x86_64-linux";
           friends = true;
         };
+        # wandering omen
+        wo = {
+          system = "x86_64-linux";
+          friends = true;
+        };
       };
     in
     {
