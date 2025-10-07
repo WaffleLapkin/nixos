@@ -3,6 +3,7 @@
   imports = [
     ./jujutsu.nix
     ./fish.nix
+    ./ssh.nix
   ];
 
   home.username = params.username;
