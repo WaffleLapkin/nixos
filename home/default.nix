@@ -4,6 +4,7 @@
     ./jujutsu.nix
     ./fish.nix
     ./ssh.nix
+    ./helix.nix
   ];
 
   home.username = params.username;
