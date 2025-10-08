@@ -63,5 +63,6 @@ lib.mkIf params.friends {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH8dZcQILx0u2efLceHWaXzulOsu9rHO1xeGT5SLeNWc"
     ];
     yaah = user [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvDoWAmF3JupYvTTSSA084bPdmYWUrIlK66r9QL2JlD" ];
+    lucas = user [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGCLn7rOAdmgE9RB7QeYSNKRdj9smmRcaL0xuGVhkqKW" ];
   };
 }
