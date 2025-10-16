@@ -11,6 +11,7 @@
     ./locale.nix
     ./friends.nix
     ./gamer.nix
+    ./steno.nix
   ];
 
   nix.settings.warn-dirty = false;
@@ -200,12 +201,6 @@
     # This should *not* be required, because plasma should enable it itself,
     # but apperently this actually makes a difference somehow...
     kdePackages.xdg-desktop-portal-kde
-    qt5.qtwayland # removes a warning from plover
-    (inputs.plover-flake.packages.${system}.plover.withPlugins (
-      plugins: with plugins; [
-        plover-machine-hid
-      ]
-    ))
     typst
     yubikey-manager
     ydotool
