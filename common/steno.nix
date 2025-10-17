@@ -21,4 +21,13 @@ in
     pkgs.qt5.qtwayland # removes a warning from plover
     (plover.withPlugins plugins)
   ];
+
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5.addons = [
+      pkgs.fcitx5-mozc
+      pkgs.fcitx5-gtk
+    ];
+  };
 }
