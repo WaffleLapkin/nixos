@@ -5,6 +5,7 @@
     ./fish.nix
     ./ssh.nix
     ./helix.nix
+    ./starship.nix
   ];
 
   home.username = params.username;
