@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.starship = {
     enable = true;
@@ -24,7 +24,7 @@
 
       custom.jj = {
         format = "$output";
-        command = "${pkgs.callPackage ../custom-pkgs/jj-prompty/package.nix { }}/bin/jj-prompty";
+        command = lib.getExe (pkgs.callPackage ../custom-pkgs/jj-prompty/package.nix { });
         when = "jj root --quiet";
       };
     };

@@ -1,23 +1,10 @@
 {
   lib,
-  config,
   pkgs,
   pkgs-unstable,
   params,
   ...
 }:
-let
-  jj = lib.getExe config.programs.jujutsu.package;
-
-  aliasBashExec = command: [
-    "util"
-    "exec"
-    "--"
-    (lib.getExe pkgs.bash)
-    "-c"
-    command
-  ];
-in
 {
   programs.jujutsu = {
     enable = true;
@@ -106,7 +93,7 @@ in
         signing.behavior = "drop";
         backend = "ssh";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5He7MsZqHaGWw33BzBeIvfO0kF3ibOtRzN7dDW8uAH";
-        backends.ssh.program = "/run/current-system/sw/bin/op-ssh-sign";
+        backends.ssh.program = lib.getExe' pkgs._1password-gui "op-ssh-sign";
         backends.ssh.allowed-signers = "/home/${params.username}/.allowed-signers";
       };
 
@@ -118,6 +105,5 @@ in
         sign-on-push = true;
       };
     };
-
   };
 }

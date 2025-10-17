@@ -19,5 +19,6 @@ pkgs.rustPlatform.buildRustPackage rec {
     description = "";
     homepage = "https://github.com/WaffleLapkin/jj-prompty";
     license = lib.licenses.blueOak100;
+    mainProgram = pname;
   };
 }
