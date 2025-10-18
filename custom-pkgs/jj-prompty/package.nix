@@ -4,13 +4,13 @@
 }:
 pkgs.rustPlatform.buildRustPackage rec {
   pname = "jj-prompty";
-  version = "0.1.0";
+  version = "0.1.1";
 
   src = pkgs.fetchFromGitHub {
     owner = "WaffleLapkin";
     repo = pname;
-    rev = "c15549fb655f491328a10a5fc8b944252ec24ea2";
-    hash = "sha256-LpUomKFG66XYgyZO6kVsdPMBDfCBAC5B1Dqr9evbTtg=";
+    rev = "ddd0897816c3b61e3aa19a33ba6af77b5119c803";
+    hash = "sha256-djBW/zDu65HA1vT5VPjqnJ8e8Ousg4vZeV2DoKsaNys=";
   };
 
   cargoHash = "sha256-PCUKrb/JA+KSEw1+E2A+4QDo3SZgHamPh3yu28Wv53s=";
