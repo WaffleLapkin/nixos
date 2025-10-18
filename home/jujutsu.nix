@@ -6,6 +6,10 @@
   ...
 }:
 {
+  programs.jjui = {
+    enable = true;
+  };
+
   programs.jujutsu = {
     enable = true;
     package = pkgs-unstable.jujutsu;
