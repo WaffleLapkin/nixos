@@ -196,6 +196,7 @@
     krita
     # davinci-resolve
     ffmpeg-full
+    helvum # allows configuring sound stuff patchbay style
 
     # Makes screen share through FF work.
     # This should *not* be required, because plasma should enable it itself,
