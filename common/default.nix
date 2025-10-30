@@ -61,7 +61,7 @@
   };
 
   # Provide debuginfo to gdb for nix-installed packages.
-  services.nixseparatedebuginfod.enable = true;
+  services.nixseparatedebuginfod2.enable = true;
 
   users = {
     defaultUserShell = pkgs.fish;
