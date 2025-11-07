@@ -141,6 +141,7 @@
 
     # CLI
     alacritty
+    kitty
     htop
     ripgrep
     (callPackage ../custom-pkgs/usbutils/package.nix { })
