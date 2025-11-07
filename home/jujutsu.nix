@@ -89,7 +89,7 @@
           "--from"
           "heads(::@- & bookmarks())"
           "--to"
-          "heads(@-::@ & ~empty())"
+          "coalesce(@ & ~empty(), @-)"
         ];
       };
 
