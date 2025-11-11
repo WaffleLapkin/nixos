@@ -10,6 +10,10 @@
     enable = true;
   };
 
+  home.packages = [
+    pkgs.watchman
+  ];
+
   programs.jujutsu = {
     enable = true;
     package = pkgs-unstable.jujutsu;
@@ -98,6 +102,8 @@
         backends.ssh.program = lib.getExe' pkgs._1password-gui "op-ssh-sign";
         backends.ssh.allowed-signers = "/home/${params.username}/.allowed-signers";
       };
+
+      fsmonitor.backend = "watchman";
 
       git = {
         # Sign commits only on push, rather than on creation.
