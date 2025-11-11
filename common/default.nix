@@ -203,6 +203,8 @@
     # This should *not* be required, because plasma should enable it itself,
     # but apperently this actually makes a difference somehow...
     kdePackages.xdg-desktop-portal-kde
+
+    # etc
     typst
     yubikey-manager
     ydotool
@@ -212,6 +214,7 @@
     obsidian
     comic-mono
     transmission_4-qt
+    kando
   ];
 
   fonts.packages = with pkgs; [
