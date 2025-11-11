@@ -27,8 +27,6 @@
       ui.pager = "delta";
       ui.diff-formatter = ":git"; # for delta
 
-      templates.git_push_bookmark = "\"ea-\" ++ change_id.short()"; # meow?
-
       revset-aliases = {
         "my()" = "user(\"waffle.lapkin@gmail.com\")";
         "user(x)" = "author(x) | committer(x)";
