@@ -101,6 +101,14 @@
           "--reversed"
           "--no-pager"
         ];
+        catchup = [
+          "rebase"
+          "-b"
+          "bookmarks() & mine() & ~immutable()"
+          "-d"
+          "trunk()"
+          "--skip-emptied"
+        ];
       };
 
       template-aliases = {
