@@ -21,12 +21,11 @@
       user.name = "Waffle Lapkin";
       user.email = "waffle.lapkin@gmail.com";
 
-      # ui.default-command = [
-      #   "log"
-      #   "--reversed"
-      #   "--no-pager"
-      # ];
-      ui.default-command = "home";
+      ui.default-command = [
+        "log"
+        "--reversed"
+        "--no-pager"
+      ];
       colors.waffle_subheading.italic = true;
 
       ui.diff-editor = ":builtin";
@@ -96,37 +95,16 @@
           "--to"
           "coalesce(@ & ~empty(), @-)"
         ];
-        # Show the list of changes in the current revision in git log, used for the default command.
-        home = [
+        ll = [
           "log"
+          "-Tbuiltin_log_compact_full_description"
           "--reversed"
           "--no-pager"
-          "--template"
-          ''
-            log_oneline
-            ++ if(self.current_working_copy() && self.diff().files().len() > 0,
-            label('waffle_subheading', '
-            Working copy changes:
-            ') ++ self.diff().summary() ++ '
-            ',
-            )
-          ''
         ];
       };
 
       template-aliases = {
-        # TODO: experiment with different symbols, this is stolen from jana (thanks jana <3)
-        # log_node = ''
-        #   label("node",
-        #     coalesce(
-        #       if(!self, label("elided", "~")),
-        #       if(current_working_copy, label("working_copy", "@")),
-        #       if(conflict, label("conflict", "×")),
-        #       if(immutable, label("immutable", "*")),
-        #       label("normal", "·")
-        #     )
-        #   )
-        # '';
+        # Compact log template which only shows important info
         log_oneline = ''
           if(root,
             format_root_commit(self),
@@ -151,6 +129,25 @@
             )
           )
         '';
+        log_oneline_with_status_summary = "log_oneline ++ if(self.current_working_copy() && self.diff().files().len() > 0, status_summary)";
+        status_summary = "'\n' ++ self.diff().summary() ++ '\n'";
+      };
+
+      templates = {
+        # TODO: experiment with different symbols, this is stolen from jana (thanks jana <3)
+        # log_node = ''
+        #   label("node",
+        #     coalesce(
+        #       if(!self, label("elided", "~")),
+        #       if(current_working_copy, label("working_copy", "@")),
+        #       if(conflict, label("conflict", "×")),
+        #       if(immutable, label("immutable", "*")),
+        #       label("normal", "·")
+        #     )
+        #   )
+        # '';
+
+        log = "log_oneline_with_status_summary";
       };
 
       signing = {
