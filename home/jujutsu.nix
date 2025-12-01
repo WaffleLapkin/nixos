@@ -21,11 +21,14 @@
       user.name = "Waffle Lapkin";
       user.email = "waffle.lapkin@gmail.com";
 
-      ui.default-command = [
-        "log"
-        "--reversed"
-        "--no-pager"
-      ];
+      # ui.default-command = [
+      #   "log"
+      #   "--reversed"
+      #   "--no-pager"
+      # ];
+      ui.default-command = "home";
+      colors.waffle_subheading.italic = true;
+
       ui.diff-editor = ":builtin";
 
       ui.pager = "delta";
@@ -92,6 +95,22 @@
           "heads(::@- & bookmarks())"
           "--to"
           "coalesce(@ & ~empty(), @-)"
+        ];
+        # Show the list of changes in the current revision in git log, used for the default command.
+        home = [
+          "log"
+          "--reversed"
+          "--no-pager"
+          "--template"
+          ''
+            builtin_log_compact
+            ++ if(self.current_working_copy() && self.diff().files().len() > 0,
+            label('waffle_subheading', '
+            Working copy changes:
+            ') ++ self.diff().summary() ++ '
+            ',
+            )
+          ''
         ];
       };
 
