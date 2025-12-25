@@ -7,9 +7,16 @@
 
   hardware.sensor.iio.enable = true;
 
-  services.desktopManager.cosmic.enable = true;
-  services.desktopManager.cosmic.xwayland.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  # services.desktopManager.cosmic.enable = true;
+  # services.desktopManager.cosmic.xwayland.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
+
+  # DE
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager = {
+    gdm.enable = true;
+    gdm.wayland = true;
+  };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
