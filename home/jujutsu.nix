@@ -34,7 +34,7 @@
       ui.diff-formatter = ":git"; # for delta
 
       revset-aliases = {
-        "my()" = "user(\"waffle.lapkin@gmail.com\")";
+        "my()" = "user(exact:\"waffle.lapkin@gmail.com\")";
         "user(x)" = "author(x) | committer(x)";
       };
 

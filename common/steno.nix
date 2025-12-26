@@ -7,7 +7,7 @@ let
   plover = inputs.plover-flake.packages.${pkgs.system}.plover;
   plugins = (
     plugins: [
-      plugins.plover-machine-hid
+      # plugins.plover-machine-hid # isn't present anymore?..
       plugins.plover-python-dictionary
       (plugins.plover-stenotype-extended.overrideAttrs (oa: {
         # Patch the extended stenotype plugin, as described in <https://feather-steno.carrd.co/#getting-started>
