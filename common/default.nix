@@ -182,7 +182,8 @@
     # (I was told in sway the default client works too)
     # (this could get me banned but ugh)
     # (discord proper now can also do that, but eeeegh)
-    vesktop
+    # vesktop
+    discord
 
     # multimedia
     emulsion
