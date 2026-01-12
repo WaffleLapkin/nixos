@@ -66,6 +66,12 @@
           system = "x86_64-linux";
           friends = true;
         };
+        # no significant harasment
+        nsh = {
+          system = "x86_64-linux";
+          friends = false;
+          gamer = false;
+        };
       };
     in
     {
