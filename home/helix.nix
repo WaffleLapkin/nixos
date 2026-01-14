@@ -20,6 +20,13 @@
         cursor-line = "hint";
         other-lines = "error";
       };
+      whitespace = {
+        render = {
+          tab = "all";
+          nbsp = "all";
+          nnbsp = "all";
+        };
+      };
     };
     keys.normal = {
       # https://github.com/helix-editor/helix/issues/13187,
