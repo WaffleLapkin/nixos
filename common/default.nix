@@ -131,6 +131,7 @@
       "obsidian"
       "steam"
       "steam-unwrapped"
+      "discord"
     ];
 
   # List packages installed in system profile. To search, run:
