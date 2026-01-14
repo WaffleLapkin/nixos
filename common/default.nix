@@ -267,6 +267,8 @@
     # btn_0 -- corresponds to key code 256. idk what it does,
     #          but we can make kwin see it as "scroll" button
     #          (sadly kwin only wants btn_*, key_* won't work...)
+    #
+    # See <https://gist.github.com/WaffleLapkin/0cf017942c77ba4876b3b4ceaa39cad0>
     evdev:input:b0003v056Ep010D*
       KEYBOARD_KEY_90001=key_blue
       KEYBOARD_KEY_90002=btn_0
