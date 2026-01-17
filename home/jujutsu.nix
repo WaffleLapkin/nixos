@@ -159,7 +159,7 @@
       };
 
       signing = {
-        signing.behavior = "drop";
+        behavior = "drop";
         backend = "ssh";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5He7MsZqHaGWw33BzBeIvfO0kF3ibOtRzN7dDW8uAH";
         backends.ssh.program = lib.getExe' pkgs._1password-gui "op-ssh-sign";
