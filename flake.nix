@@ -9,6 +9,20 @@
     fenix.url = "github:nix-community/fenix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     helix.url = "github:helix-editor/helix";
+
+    niri-unstable.url = "github:YaLTeR/niri";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.niri-unstable.follows = "niri-unstable";
+    };
+    matugen = {
+      url = "github:/InioX/matugen/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -39,6 +53,7 @@
         in
         nixpkgs.lib.nixosSystem {
           inherit system;
+          inherit specialArgs;
           modules = [
             ./common
             ./machines/${hostname}
@@ -53,7 +68,6 @@
             }
 
           ];
-          inherit specialArgs;
         };
 
       machines = {

@@ -12,6 +12,7 @@
     ./friends.nix
     ./gamer.nix
     ./steno.nix
+    ./niri.nix
   ];
 
   nix.settings.warn-dirty = false;

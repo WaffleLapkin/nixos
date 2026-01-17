@@ -51,6 +51,8 @@
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # try to run electron apps with ozone so they scale normally
 
+  niri.enable = true;
+
   # Local snapshots (time machine)
   # <https://github.com/digint/btrbk?tab=readme-ov-file#example-local-regular-snapshots-time-machine>
   # Thttps://github.com/GoldsteinE/nixos/blob/75fa9409534ac5e2a95ec7e5ed6804fe1b2e476e/modules/desktop/btrbk.nix>
