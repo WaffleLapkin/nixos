@@ -21,12 +21,13 @@
 
   fileSystems."/boot".options = [ "umask=0077" ];
 
-  # In theory this allows me to change asus weird stuff
-  # (in practice it doesn't)
-  # services.asusd = {
-  #   enable = true;
-  #   enableUserService = true;
-  # };
+  services = {
+    supergfxd.enable = true;
+    asusd = {
+      enable = true;
+      enableUserService = true;
+    };
+  };
 
   environment.systemPackages = [
     # pkgs.asusctl
