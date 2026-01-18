@@ -36,9 +36,6 @@
   # (I don't think this works... monitor-sensor reports correct stuff but KDE does not care)
   hardware.sensor.iio.enable = true;
 
-  services.tlp.enable = false;
-  services.power-profiles-daemon.enable = true; # conflicts with tlp
-
   # DE
   services.desktopManager.plasma6.enable = true;
   services.xserver = {
@@ -52,6 +49,29 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # try to run electron apps with ozone so they scale normally
 
   niri.enable = true;
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      RADEON_DPM_PERF_LEVEL_ON_AC = "auto";
+      RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
+
+      PCIE_ASPM_ON_AC = "default";
+      PCIE_ASPM_ON_BAT = "powersupersave";
+
+      PLATFORM_PROFILE_ON_BAT = "quiet";
+
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+    };
+  };
+  services.power-profiles-daemon.enable = false;
 
   # Local snapshots (time machine)
   # <https://github.com/digint/btrbk?tab=readme-ov-file#example-local-regular-snapshots-time-machine>
