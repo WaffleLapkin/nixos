@@ -120,6 +120,11 @@ in
           natural-scroll = true;
         }
         // cfg.touchpad;
+
+        trackball = {
+          scroll-method = "on-button-down";
+          scroll-button = 256;
+        };
       };
 
       gestures.hot-corners.enable = false;
