@@ -190,12 +190,17 @@ in
             }
           ];
           open-floating = true;
+          # fullscreen windows don't float, they drown
+          open-fullscreen = false;
         }
 
         {
           matches = [
             { app-id = "discord"; }
-            { app-id = "org.telegram.desktop"; }
+            {
+              app-id = "org.telegram.desktop";
+              title = "^(.{0,11}$|[^M]|.[^e]|..[^d]|...[^i]|.{4}[^a]|.{5}[^ ]|.{6}[^v]|.{7}[^i]|.{8}[^e]|.{9}[^w]|.{10}[^e]|.{11}[^r]|.{13,})";
+            }
           ];
           open-on-workspace = "chat";
         }
