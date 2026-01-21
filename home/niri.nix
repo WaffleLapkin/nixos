@@ -214,6 +214,30 @@ in
           };
           clip-to-geometry = true;
         }
+
+        {
+          matches = [
+            {
+              app-id = "org.telegram.desktop";
+              title = "Media viewer";
+            }
+          ];
+
+          # focus ring kills transparency, <https://github.com/YaLTeR/niri/issues/1823>
+          focus-ring = {
+            enable = false;
+          };
+
+          # try to match corners of the noctalia shell
+          # can possibly be superseeded by using open-maximized-to-edges,
+          # once flake maintainer finds time to add it <https://github.com/sodiboo/niri-flake/issues/1493>
+          geometry-corner-radius = {
+            top-left = 0.0;
+            top-right = 12.0;
+            bottom-right = 12.0;
+            bottom-left = 0.0;
+          };
+        }
       ];
 
       spawn-at-startup = [
