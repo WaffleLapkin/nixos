@@ -149,6 +149,7 @@ in
         location = {
           monthBeforeDay = false;
           name = "Prague, Czechia";
+          firstDayOfWeek = 1;
         };
         wallpaper = {
           enabled = true;
