@@ -42,5 +42,9 @@
     debug = { };
     wallpaper = (inputs.self + /media/pink_square.qoi);
     pfp = (inputs.self + /media/pink_square.qoi);
+
+    binds = {
+      "F6".action.screenshot = { };
+    };
   };
 }
