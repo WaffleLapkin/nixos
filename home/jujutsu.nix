@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  pkgs-unstable,
   params,
   ...
 }:
@@ -16,7 +15,7 @@
 
   programs.jujutsu = {
     enable = true;
-    package = pkgs-unstable.jujutsu;
+    package = pkgs.jujutsu;
     settings = {
       user.name = "Waffle Lapkin";
       user.email = "waffle.lapkin@gmail.com";

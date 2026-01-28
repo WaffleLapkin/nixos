@@ -47,7 +47,6 @@
           specialArgs = {
             inherit hostname;
             inherit inputs;
-            pkgs-unstable = inputs.nixpkgs.legacyPackages.${system};
             params = (import ./params.nix) // params;
           };
         in
