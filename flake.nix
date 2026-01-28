@@ -62,7 +62,7 @@
                 useUserPackages = true;
                 backupFileExtension = "backup";
                 extraSpecialArgs = specialArgs;
-                users."${params.username}" = ./home;
+                users."${params.username}" = ./home/${hostname}.nix;
               };
             }
 
