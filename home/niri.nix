@@ -110,6 +110,7 @@ in
 
         mouse = {
           accel-speed = -0.5;
+          scroll-factor = 3;
         };
 
         touchpad = {
