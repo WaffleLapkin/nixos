@@ -158,7 +158,7 @@
     presenterm
 
     # text editing
-    inputs.helix.packages.${pkgs.system}.default
+    inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.default
     zed-editor
 
     # nix

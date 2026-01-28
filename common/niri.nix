@@ -21,7 +21,7 @@ in
     (lib.mkIf cfg.enable {
       services.gnome.gnome-keyring.enable = true;
       services.gvfs.enable = true;
-      services.xserver.displayManager.sessionPackages = [
+      services.displayManager.sessionPackages = [
         inputs.niri-unstable.packages.${pkgs.stdenv.hostPlatform.system}.niri
       ];
       programs.dconf.enable = true;

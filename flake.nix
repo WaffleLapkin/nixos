@@ -35,35 +35,35 @@
     }:
     let
       # Small tool to iterate over each systems (<https://github.com/numtide/treefmt-nix?tab=readme-ov-file#flakes>)
-      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+      eachSystem = f: nixpkgs.lib.genAttrs (systems) (system: f nixpkgs.legacyPackages.${system});
 
       # Eval the treefmt modules from ./treefmt.nix
       treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
 
       mkNixosConfiguration =
-        hostname:
-        params@{ system, ... }:
+        hostname: param_overrides:
         let
+          params = import ./params.nix // param_overrides;
           specialArgs = {
             inherit hostname;
             inherit inputs;
-            params = (import ./params.nix) // params;
+            inherit params;
           };
         in
         nixpkgs.lib.nixosSystem {
-          inherit system;
           inherit specialArgs;
           modules = [
             ./common
             ./machines/${hostname}
             inputs.home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = specialArgs;
-
-              home-manager.users."${specialArgs.params.username}" = import ./home;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "backup";
+                extraSpecialArgs = specialArgs;
+                users."${params.username}" = ./home;
+              };
             }
 
           ];
@@ -71,17 +71,14 @@
 
       machines = {
         polaris = {
-          system = "x86_64-linux";
           friends = true;
         };
         # wandering omen
         wo = {
-          system = "x86_64-linux";
           friends = true;
         };
         # no significant harasment
         nsh = {
-          system = "x86_64-linux";
           friends = false;
           gamer = false;
         };
@@ -89,10 +86,10 @@
     in
     {
       # for `nix fmt`
-      formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+      formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostSystem.system}.config.build.wrapper);
       # for `nix flake check`
       checks = eachSystem (pkgs: {
-        formatting = treefmtEval.${pkgs.system}.config.build.check self;
+        formatting = treefmtEval.${pkgs.stdenv.hostSystem.system}.config.build.check self;
       });
 
       nixosConfigurations = builtins.mapAttrs mkNixosConfiguration machines;

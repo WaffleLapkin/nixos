@@ -4,7 +4,7 @@
   ...
 }:
 let
-  plover = inputs.plover-flake.packages.${pkgs.system}.plover;
+  plover = inputs.plover-flake.packages.${pkgs.stdenv.hostPlatform.system}.plover;
   plugins = (
     plugins: [
       # plugins.plover-machine-hid # isn't present anymore?..
