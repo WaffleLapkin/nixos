@@ -198,6 +198,7 @@
     wl-clipboard-rs # used by an MPV script I have which allows pasting URLs into mpv
     # aseprite # broken currently...
     krita
+    inkscape
     # davinci-resolve
     ffmpeg-full
     helvum # allows configuring sound stuff patchbay style
