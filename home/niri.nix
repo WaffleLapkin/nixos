@@ -125,7 +125,7 @@ in
         trackball = {
           scroll-method = "on-button-down";
           scroll-button = 256;
-          middle-emulation = true;
+          # middle-emulation = true;
         };
       };
 
