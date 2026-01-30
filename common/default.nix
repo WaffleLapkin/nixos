@@ -25,7 +25,6 @@
     loader.systemd-boot.enable = true;
     loader.systemd-boot.memtest86.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   networking.hostName = hostname; # Define your hostname.

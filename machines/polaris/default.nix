@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -8,6 +8,7 @@
 
   nixpkgs.config.allowUnfree = true; # we want drivers lol
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [
     # disables the watchdogs so that I can actually turn off the laptop normally lol :|
     "nowatchdog"
