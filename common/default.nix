@@ -280,5 +280,15 @@
       KEYBOARD_KEY_90006=btn_left
       KEYBOARD_KEY_90007=btn_right
       KEYBOARD_KEY_90008=key_esc
+
+    evdev:input:b0003v056Ep010C*
+      KEYBOARD_KEY_90001=key_blue
+      KEYBOARD_KEY_90002=btn_0
+      KEYBOARD_KEY_90003=key_blue
+      KEYBOARD_KEY_90004=btn_middle
+      KEYBOARD_KEY_90005=key_blue
+      KEYBOARD_KEY_90006=btn_left
+      KEYBOARD_KEY_90007=btn_right
+      KEYBOARD_KEY_90008=key_esc
   '';
 }
