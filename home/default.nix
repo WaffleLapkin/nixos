@@ -20,6 +20,7 @@
     enable = true;
     noctalia = true;
     laptop = true;
+    outputs = { };
     touchpad = { };
     debug = { };
     wallpaper = (inputs.self + /media/pink_square.qoi);

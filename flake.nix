@@ -35,7 +35,7 @@
     }:
     let
       # Small tool to iterate over each systems (<https://github.com/numtide/treefmt-nix?tab=readme-ov-file#flakes>)
-      eachSystem = f: nixpkgs.lib.genAttrs (systems) (system: f nixpkgs.legacyPackages.${system});
+      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
 
       # Eval the treefmt modules from ./treefmt.nix
       treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
@@ -86,10 +86,10 @@
     in
     {
       # for `nix fmt`
-      formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostSystem.system}.config.build.wrapper);
+      formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
       # for `nix flake check`
       checks = eachSystem (pkgs: {
-        formatting = treefmtEval.${pkgs.stdenv.hostSystem.system}.config.build.check self;
+        formatting = treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.check self;
       });
 
       nixosConfigurations = builtins.mapAttrs mkNixosConfiguration machines;
