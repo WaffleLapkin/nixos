@@ -312,8 +312,6 @@ in
           allow-when-locked = true;
           action.spawn = [
             "brightnessctl"
-            "--device=amdgpu_bl1"
-            "--class=backlight"
             "set"
             "+10%"
           ];
@@ -322,8 +320,6 @@ in
           allow-when-locked = true;
           action.spawn = [
             "brightnessctl"
-            "--device=amdgpu_bl1"
-            "--class=backlight"
             "set"
             "10%-"
           ];
