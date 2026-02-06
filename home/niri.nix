@@ -16,36 +16,49 @@ in
       binds = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
         description = "Additional niri keybindings";
+        default = {};
       };
 
       touchpad = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
         description = "Additional touchpad settings";
+        default = {};
       };
 
       outputs = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
         description = "Outputs settings";
+        default = {};
       };
 
       spawn-at-startup = lib.mkOption {
         type = lib.types.listOf (lib.types.attrsOf lib.types.anything);
         description = "SH files to start at startup";
+        default = [];
       };
 
       animations = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
         description = "Animation settings";
+        default = {};
       };
 
       layout = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
         description = "Additional layout settings";
+        default = {};
       };
 
       debug = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
         description = "Debug settings";
+        default = {};
+      };
+
+      switch-events = lib.mkOption {
+        type = lib.types.attrsOf lib.types.anything;
+        description = "Lid switch events";
+        default = {};
       };
     };
   };
@@ -258,6 +271,7 @@ in
       animations = cfg.animations;
       outputs = cfg.outputs;
       debug = cfg.debug;
+      switch-events = cfg.switch-events;
 
       binds = {
         "Mod+Shift+Slash".action.show-hotkey-overlay = { };

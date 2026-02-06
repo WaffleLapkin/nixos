@@ -60,6 +60,10 @@ in
       QT_QPA_PLATFORMTHEME = "qt6ct";
     };
 
+    niri.switch-events = {
+      lid-close.action.spawn = noctalia "lockScreen lock";
+    };
+
     niri.binds = {
       "Ctrl+Alt+Delete" = {
         hotkey-overlay.title = "Power menu";
