@@ -229,6 +229,7 @@
     monocraft
     raleway
     (callPackage ../custom-pkgs/eb-garamond-initials/package.nix { })
+    eb-garamond
   ];
 
   # Create a "plugdev" group.
