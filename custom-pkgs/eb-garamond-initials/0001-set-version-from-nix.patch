@@ -1,0 +1,30 @@
+From ccd392758f93e972477593084b9d029f2f49dbc8 Mon Sep 17 00:00:00 2001
+From: Waffle Lapkin <waffle.lapkin@gmail.com>
+Date: Mon, 16 Feb 2026 18:37:37 +0100
+Subject: [PATCH] set version from nix
+
+---
+ Makefile | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 30f3e6b2..a15b8186 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,12 +1,5 @@
+ NAME=EBGaramond
+-TAG_COMMIT := $(shell git rev-list --abbrev-commit --tags --max-count=1)
+-TAG := $(shell git describe --abbrev=0 --tags ${TAG_COMMIT} 2>/dev/null || true)
+-COMMIT := $(shell git rev-parse --short HEAD)
+-DATE := $(shell git log -1 --format=%cd --date=format:"%Y%m%d")
+-VERSION := $(TAG:v%=%)
+-ifneq ($(COMMIT), $(TAG_COMMIT))
+-	VERSION := $(VERSION)-next-$(COMMIT)-$(DATE)
+-endif
++VERSION := @version@
+ 
+ SRC=SFD
+ BLD=build
+-- 
+2.52.0
+

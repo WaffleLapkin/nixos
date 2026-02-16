@@ -228,6 +228,7 @@
     atkinson-hyperlegible-mono
     monocraft
     raleway
+    (callPackage ../custom-pkgs/eb-garamond-initials/package.nix { })
   ];
 
   # Create a "plugdev" group.
