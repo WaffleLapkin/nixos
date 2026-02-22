@@ -86,6 +86,7 @@ in
     home.packages = with pkgs; [
       rio # terminal
       brightnessctl # brightness
+      playerctl # play next/prev
       gcr # system prompter
       nautilus # file manager
       polkit_gnome
