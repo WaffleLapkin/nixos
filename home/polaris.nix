@@ -19,4 +19,23 @@
       focus-at-startup = true;
     };
   };
+
+  niri.binds = {
+    "XF86KbdBrightnessUp" = {
+      allow-when-locked = true;
+      action.spawn = [
+        "asusctl"
+        "leds"
+        "next"
+      ];
+    };
+    "XF86KbdBrightnessDown" = {
+      allow-when-locked = true;
+      action.spawn = [
+        "asusctl"
+        "leds"
+        "prev"
+      ];
+    };
+  };
 }
