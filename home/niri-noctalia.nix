@@ -81,7 +81,7 @@ in
       };
 
       "Mod+T" = {
-        action.spawn = "rio";
+        action.spawn = "alacritty";
       };
 
       "XF86AudioRaiseVolume" = {
@@ -162,7 +162,7 @@ in
         };
         appLauncher = {
           enableClipboardHistory = true;
-          terminalCommand = "rio -e";
+          terminalCommand = "alacritty -e";
         };
         sessionMenu = {
           enableCountdown = true;

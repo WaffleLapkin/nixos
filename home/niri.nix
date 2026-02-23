@@ -84,7 +84,6 @@ in
     };
 
     home.packages = with pkgs; [
-      rio # terminal
       brightnessctl # brightness
       playerctl # play next/prev
       gcr # system prompter
@@ -279,7 +278,7 @@ in
 
         "Mod+T" = {
           hotkey-overlay.title = "Open a Terminal";
-          action.spawn = "rio";
+          action.spawn = "alacritty";
         };
 
         "Ctrl+Shift+Space" = {
