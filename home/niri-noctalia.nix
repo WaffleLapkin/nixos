@@ -105,29 +105,29 @@ in
     niri.layout = {
       focus-ring = {
         width = 1;
-        active.color = "#${config.programs.matugen.theme.colors.primary.default}";
-        inactive.color = "#${config.programs.matugen.theme.colors.surface.default}";
-        urgent.color = "#${config.programs.matugen.theme.colors.error.default}";
+        active.color = config.programs.matugen.theme.colors.primary.default.color;
+        inactive.color = config.programs.matugen.theme.colors.surface.default.color;
+        urgent.color = config.programs.matugen.theme.colors.error.default.color;
       };
 
       border = {
-        active.color = "#${config.programs.matugen.theme.colors.primary.default}";
-        inactive.color = "#${config.programs.matugen.theme.colors.surface.default}";
-        urgent.color = "#${config.programs.matugen.theme.colors.error.default}";
+        active.color = config.programs.matugen.theme.colors.primary.default.color;
+        inactive.color = config.programs.matugen.theme.colors.surface.default.color;
+        urgent.color = config.programs.matugen.theme.colors.error.default.color;
       };
 
       shadow = {
-        color = "#${config.programs.matugen.theme.colors.shadow.default}70";
+        color = "${config.programs.matugen.theme.colors.shadow.default.color}70";
       };
 
       tab-indicator = {
-        active.color = "#${config.programs.matugen.theme.colors.primary.default}";
-        inactive.color = "#${config.programs.matugen.theme.colors.primary_container.default}";
-        urgent.color = "#${config.programs.matugen.theme.colors.error.default}";
+        active.color = config.programs.matugen.theme.colors.primary.default.color;
+        inactive.color = config.programs.matugen.theme.colors.primary_container.default.color;
+        urgent.color = config.programs.matugen.theme.colors.error.default.color;
       };
 
       insert-hint = {
-        display.color = "#${config.programs.matugen.theme.colors.primary.default}80";
+        display.color = "${config.programs.matugen.theme.colors.primary.default.color}80";
       };
     };
     niri.animations = { };
