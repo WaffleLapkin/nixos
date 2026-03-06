@@ -12,6 +12,10 @@
         identityAgent = "~/.1password/agent.sock";
       };
 
+      "ragdoll" = {
+        hostname = "192.168.178.138";
+      };
+
       "pineapple.computer" = {
         port = 69;
       };
