@@ -281,7 +281,7 @@ in
           action.spawn = "alacritty";
         };
 
-        "Ctrl+Shift+Space" = {
+        "Mod+P" = {
           action.spawn = [
             "1password"
             "--quick-access"
