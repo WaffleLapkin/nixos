@@ -157,7 +157,7 @@
         log = "log_oneline_with_status_summary";
       };
 
-      signing = {
+      signing = lib.mkIf (!params.external) {
         behavior = "drop";
         backend = "ssh";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5He7MsZqHaGWw33BzBeIvfO0kF3ibOtRzN7dDW8uAH";

@@ -43,7 +43,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.noctalia {
+  config = lib.mkIf (cfg.enable && cfg.noctalia) {
     home.packages = with pkgs; [
       matugen
       # gsettings

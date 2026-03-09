@@ -37,6 +37,16 @@
       # Small tool to iterate over each systems (<https://github.com/numtide/treefmt-nix?tab=readme-ov-file#flakes>)
       eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
 
+      attrMap =
+        f: attrset:
+        builtins.listToAttrs (
+          builtins.map (s: {
+            name = builtins.elemAt (builtins.attrNames s) 0;
+            value = builtins.elemAt (builtins.attrValues s) 0;
+
+          }) (builtins.attrValues (builtins.mapAttrs f attrset))
+        );
+
       # Eval the treefmt modules from ./treefmt.nix
       treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
 
@@ -69,6 +79,24 @@
           ];
         };
 
+      mkHomeConfiguration =
+        hostname: param_overrides:
+        let
+          params = import ./params.nix // param_overrides;
+          extraSpecialArgs = {
+            inherit hostname;
+            inherit inputs;
+            inherit params;
+          };
+        in
+        {
+          "${params.username}@${hostname}" = inputs.home-manager.lib.homeManagerConfiguration {
+            inherit extraSpecialArgs;
+            pkgs = nixpkgs.legacyPackages.${params.arch};
+            modules = [ ./home/${hostname}.nix ];
+          };
+        };
+
       machines = {
         polaris = {
           friends = true;
@@ -83,6 +111,15 @@
           gamer = false;
         };
       };
+
+      external-machines = {
+        ragdoll = {
+          arch = "x86_64-linux";
+          external = true;
+          friends = false;
+          gamer = false;
+        };
+      };
     in
     {
       # for `nix fmt`
@@ -93,5 +130,6 @@
       });
 
       nixosConfigurations = builtins.mapAttrs mkNixosConfiguration machines;
+      homeConfigurations = attrMap mkHomeConfiguration external-machines;
     };
 }

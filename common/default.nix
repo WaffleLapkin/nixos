@@ -82,7 +82,6 @@
     };
   };
 
-  environment.variables.EDITOR = "hx"; # FIXME: use home-manager instead, for per-user config
   environment.etc = {
     "xdg/user-dirs.defaults".text = ''
       PICTURES=pictures

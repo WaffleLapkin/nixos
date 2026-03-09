@@ -1,4 +1,9 @@
-{ params, inputs, ... }:
+{
+  lib,
+  params,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./jujutsu.nix
@@ -17,7 +22,7 @@
   home.stateVersion = "25.11";
 
   niri = {
-    enable = true;
+    enable = lib.mkDefault true;
     noctalia = true;
     laptop = true;
     outputs = { };

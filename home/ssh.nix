@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, params, ... }:
 {
   programs.ssh = {
     enable = true;
@@ -9,7 +9,7 @@
     matchBlocks = {
       "*" = {
         forwardAgent = true;
-        identityAgent = "~/.1password/agent.sock";
+        identityAgent = lib.mkIf (!params.external) "~/.1password/agent.sock";
       };
 
       "ragdoll" = {

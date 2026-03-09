@@ -1,11 +1,11 @@
 { ... }:
 {
-
   programs.helix.enable = true;
   programs.helix.settings = {
 
     theme = "curzon";
     editor = {
+      true-color = true; # when I ssh into ragdoll helix doesn't believe in true color
       line-number = "relative";
       color-modes = true; # curzon doesn't have colors for modes, but still :sweat_smile:
       auto-pairs = false; # >:(
@@ -36,5 +36,9 @@
 
       "A-z" = ":toggle soft-wrap.enable";
     };
+  };
+
+  home.sessionVariables = {
+    EDITOR = "hx";
   };
 }
