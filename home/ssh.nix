@@ -12,6 +12,11 @@
         identityAgent = lib.mkIf (!params.external) "~/.1password/agent.sock";
       };
 
+      "ragdoll-ext" = {
+        hostname = "hexcat.nl";
+        port = 4455;
+      };
+
       "ragdoll" = {
         hostname = "192.168.178.138";
       };
