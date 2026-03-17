@@ -118,6 +118,7 @@
     };
 
     wireshark.enable = true;
+    mosh.enable = true;
   };
 
   nixpkgs.config.allowUnfreePredicate =
