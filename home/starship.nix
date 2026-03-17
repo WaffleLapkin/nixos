@@ -9,6 +9,8 @@
 
       sudo = {
         disabled = false;
+        style = "red";
+        format = "!";
       };
 
       directory = {
