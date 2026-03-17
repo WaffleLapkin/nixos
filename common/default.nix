@@ -217,6 +217,7 @@
     comic-mono
     transmission_4-qt
     kando
+    sshfs
   ];
 
   fonts.packages = with pkgs; [
