@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [ ./. ];
   niri.enable = false;
@@ -10,4 +10,6 @@
     # that's where pacman puts rust-analyzer proxy: <https://gitlab.archlinux.org/archlinux/packaging/packages/rustup/-/blob/2db544a3e374b13b0001b01dc71d5785649f66ab/PKGBUILD#L54>
     fish_add_path /usr/lib/rustup/bin
   '';
+
+  home.packages = [ pkgs.mosh ];
 }
