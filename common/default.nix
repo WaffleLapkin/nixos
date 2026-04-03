@@ -200,7 +200,7 @@
     inkscape
     # davinci-resolve
     ffmpeg-full
-    helvum # allows configuring sound stuff patchbay style
+    # helvum # allows configuring sound stuff patchbay style # error: 'helvum' has been removed as it was unmaintained upstream and relied on a vulnerable dependency. Consider using 'crosspipe' instead.
 
     # Makes screen share through FF work.
     # This should *not* be required, because plasma should enable it itself,
