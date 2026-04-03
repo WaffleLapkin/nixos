@@ -11,5 +11,8 @@
     fish_add_path /usr/lib/rustup/bin
   '';
 
-  home.packages = [ pkgs.mosh pkgs.ast-grep ];
+  home.packages = [
+    pkgs.mosh
+    pkgs.ast-grep
+  ];
 }
