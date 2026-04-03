@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./hardware.nix
@@ -14,6 +19,16 @@
     # disables the watchdogs so that I can actually turn off the laptop normally lol :|
     "nowatchdog"
     "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
+  ];
+
+  boot.kernelPatches = [
+    {
+      name = "fuse_io_yuring";
+      patch = null;
+      structuredExtraConfig = {
+        FUSE_IO_URING = lib.kernel.yes;
+      };
+    }
   ];
 
   boot.initrd.luks.devices.nixos-enc = {
