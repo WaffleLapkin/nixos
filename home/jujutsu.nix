@@ -108,6 +108,18 @@
           "trunk()"
           "--skip-emptied"
         ];
+        nc = ["nextconflict"];
+        nextconflict = [
+          "edit"
+          "-r"
+          "roots(@:: & ~@ & conflicts())"
+        ];
+        pc = ["prevconflict"];
+        prevconflict = [
+          "edit"
+          "-r"
+          "heads(::@ & ~@ & conflicts())"
+        ];
       };
 
       template-aliases = {
