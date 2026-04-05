@@ -26,7 +26,7 @@ lib.mkIf params.gamer {
   environment.systemPackages = [
     pkgs.r2modman
     pkgs.olympus
-    pkgs.wineWowPackages.waylandFull
+    pkgs.wineWow64Packages.waylandFull
     pkgs.mangohud
   ];
 }
