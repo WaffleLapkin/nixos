@@ -14,5 +14,6 @@
   home.packages = [
     pkgs.mosh
     pkgs.ast-grep
+    pkgs.pkgsCross.aarch64-multiplatform.stdenv.cc
   ];
 }
