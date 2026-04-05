@@ -163,6 +163,7 @@
     # nix
     comma
     nix-output-monitor
+    nh # helper :3
     nil # nix language server
 
     # VCS
