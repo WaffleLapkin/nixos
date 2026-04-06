@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:WaffleLapkin/nixos-hardware/disable-user-service";
+    nixos-hardware.url = "github:NixOs/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # nixpkgs_plover.url = "github:FirelightFlagboy/nixpkgs/update-plover-4.0.0.dev12";
