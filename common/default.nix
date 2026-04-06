@@ -13,6 +13,7 @@
     ./gamer.nix
     ./steno.nix
     ./niri.nix
+    ./cross.nix
   ];
 
   nix.settings.warn-dirty = false;
