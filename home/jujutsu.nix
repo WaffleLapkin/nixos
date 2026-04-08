@@ -35,30 +35,33 @@
       revset-aliases = {
         "my()" = "user(exact:\"waffle.lapkin@gmail.com\")";
         "user(x)" = "author(x) | committer(x)";
+
+        # <https://willhbr.net/2024/08/18/understanding-revsets-for-a-better-jj-log-output/>
+        # log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
+        # log = '@ | ancestors(trunk()..(visible_heads()), 2) | trunk()'
+
+        # 1. Search for my* commits in active branches (as in tree) (also include @)
+        #    a = ((trunk()::visible_heads()) & my() | @)
+        # 2. Get heads of said tree branches
+        #    b = heads(a::)
+        # 3. Get the whole branch + an ancestor
+        #    c = ancestors(trunk()..b, 2)
+        # 4. Also include tunk
+        #    log = trunk() | c
+        #
+        # In other words this gives me "all branches which include my commit(s) or the current commit,
+        # a bit of context on them, and trunk".
+        #
+        # *"my" meaning I'm either the author or the commiter
+        #
+        # This is more helpful than either the default or willhbr.net's one, because it
+        # 1. only shows relevant branches (branches with my commits / the current one)
+        # 2. but at the same time actually shows me branches when I'm only partially involved
+
+        "log" = "trunk() | ancestors(trunk()..heads(((trunk()..visible_heads()) & my() | @)::), 2)";
       };
 
-      # <https://willhbr.net/2024/08/18/understanding-revsets-for-a-better-jj-log-output/>
-      # log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
-      # log = '@ | ancestors(trunk()..(visible_heads()), 2) | trunk()'
-
-      # 1. Search for my* commits in active branches (as in tree) (also include @)
-      #    a = ((trunk()::visible_heads()) & my() | @)
-      # 2. Get heads of said tree branches
-      #    b = heads(a::)
-      # 3. Get the whole branch + an ancestor
-      #    c = ancestors(trunk()..b, 2)
-      # 4. Also include tunk
-      #    log = trunk() | c
-      #
-      # In other words this gives me "all branches which include my commit(s) or the current commit,
-      # a bit of context on them, and trunk".
-      #
-      # *"my" meaning I'm either the author or the commiter
-      #
-      # This is more helpful than either the default or willhbr.net's one, because it
-      # 1. only shows relevant branches (branches with my commits / the current one)
-      # 2. but at the same time actually shows me branches when I'm only partially involved
-      revsets.log = "trunk() | ancestors(trunk()..heads(((trunk()..visible_heads()) & my() | @)::), 2)";
+      revsets.log = "log";
 
       aliases = {
         meow = [
