@@ -169,12 +169,14 @@
         log = "log_oneline_with_status_summary";
       };
 
-      signing = lib.mkIf (!params.external) {
+      signing = {
         behavior = "drop";
         backend = "ssh";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5He7MsZqHaGWw33BzBeIvfO0kF3ibOtRzN7dDW8uAH";
-        backends.ssh.program = lib.getExe' pkgs._1password-gui "op-ssh-sign";
-        backends.ssh.allowed-signers = "/home/${params.username}/.allowed-signers";
+        backends.ssh = lib.mkIf (!params.external) {
+          program = lib.getExe' pkgs._1password-gui "op-ssh-sign";
+          allowed-signers = "/home/${params.username}/.allowed-signers";
+        };
       };
 
       fsmonitor.backend = "watchman";
