@@ -108,13 +108,13 @@
           "trunk()"
           "--skip-emptied"
         ];
-        nc = ["nextconflict"];
+        nc = [ "nextconflict" ];
         nextconflict = [
           "edit"
           "-r"
           "roots(@:: & ~@ & conflicts())"
         ];
-        pc = ["prevconflict"];
+        pc = [ "prevconflict" ];
         prevconflict = [
           "edit"
           "-r"
