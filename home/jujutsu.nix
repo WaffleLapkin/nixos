@@ -123,6 +123,12 @@
           "-r"
           "heads(::@ & ~@ & conflicts())"
         ];
+        "pushall" = [
+          "git"
+          "push"
+          "-r"
+          "bookmarks() ~ conflicts() ~ (description('') ~ root())::"
+        ];
       };
 
       template-aliases = {
