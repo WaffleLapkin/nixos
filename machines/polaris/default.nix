@@ -10,7 +10,11 @@
     ./unfuck-keyboard-leds.nix
     inputs.nixos-hardware.nixosModules.asus-flow-gv302x-amdgpu
     inputs.nixos-hardware.nixosModules.asus-flow-gv302x-nvidia
+
+    # Ideally I'd host them on a server or something,
+    # but in the meantime let's just put them on my laptop to try them out...
     ./paperless.nix
+    ./immich.nix
   ];
 
   nixpkgs.config.allowUnfree = true; # we want drivers lol
