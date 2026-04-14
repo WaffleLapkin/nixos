@@ -10,6 +10,7 @@
     ./unfuck-keyboard-leds.nix
     inputs.nixos-hardware.nixosModules.asus-flow-gv302x-amdgpu
     inputs.nixos-hardware.nixosModules.asus-flow-gv302x-nvidia
+    ./paperless.nix
   ];
 
   nixpkgs.config.allowUnfree = true; # we want drivers lol
