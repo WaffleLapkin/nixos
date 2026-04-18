@@ -123,6 +123,12 @@
           "-r"
           "heads(::@ & ~@ & conflicts())"
         ];
+        fc = [ "firstconflict" ];
+        firstconflict = [
+          "edit"
+          "-r"
+          "roots(conflicts())"
+        ];
         "pushall" = [
           "git"
           "push"
