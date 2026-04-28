@@ -26,15 +26,15 @@
     "modprobe.blacklist=sp5100_tco,iTCO_wdt,edac_mce_amd"
   ];
 
-  boot.kernelPatches = [
-    {
-      name = "fuse_io_yuring";
-      patch = null;
-      structuredExtraConfig = {
-        FUSE_IO_URING = lib.kernel.yes;
-      };
-    }
-  ];
+  # boot.kernelPatches = [
+  #   {
+  #     name = "fuse_io_yuring";
+  #     patch = null;
+  #     structuredExtraConfig = {
+  #       FUSE_IO_URING = lib.kernel.yes;
+  #     };
+  #   }
+  # ];
 
   boot.initrd.luks.devices.nixos-enc = {
     device = "/dev/nvme0n1p2";
