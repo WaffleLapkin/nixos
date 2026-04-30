@@ -205,4 +205,30 @@
       };
     };
   };
+
+  programs.git = {
+    enable = true;
+    settings.core.excludesfile = "~/.gitexclude";
+  };
+  home.file.".gitexclude".text = ''
+    /build-rust-analyzer
+    .idea
+    .vscode
+    .directory
+    .attach_pid*
+    ci.sh
+    t
+    t.rs
+    u
+    u.rs
+    a
+    a.rs
+    b
+    b.rs
+    uwu
+    uwu.rs
+    owo
+    owo.rs
+    .direnv
+  '';
 }
