@@ -204,6 +204,9 @@ in
               {
                 id = "plugin:catwalk";
               }
+              {
+                id = "Volume";
+              }
             ];
             center = [
               {
