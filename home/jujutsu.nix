@@ -135,7 +135,12 @@
           "-r"
           "bookmarks() ~ conflicts() ~ (description('') ~ root())::"
         ];
-        nb = ["bookmark" "set" "-r" "coalesce(@ & ~empty(), @-)"];
+        nb = [
+          "bookmark"
+          "set"
+          "-r"
+          "coalesce(@ & ~empty(), @-)"
+        ];
       };
 
       template-aliases = {
@@ -203,6 +208,8 @@
         # This is preferrable because otherwise benign commands like `jj log` or
         # `jj st` may cause auth dialogue from 1password.
         sign-on-push = true;
+
+        private-commits = "description('wip:*') | description('todo:*') | description('TODO:*') | description('private:*') | description('priv:*')";
       };
     };
   };
