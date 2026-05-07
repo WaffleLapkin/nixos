@@ -29,7 +29,8 @@
     touchpad = { };
     debug = { };
     wallpaper = (inputs.self + /media/pink_square.qoi);
-    pfp = (inputs.self + /media/pink_square.qoi);
+    pfp = (inputs.self + /media/waffle_cat.qoi);
+    pfp = (inputs.self + /media/waffle_cat.jpg);
 
     binds = {
       "F6".action.screenshot = { };
