@@ -135,6 +135,7 @@
           "-r"
           "bookmarks() ~ conflicts() ~ (description('') ~ root())::"
         ];
+        nb = ["bookmark" "set" "-r" "coalesce(@ & ~empty(), @-)"];
       };
 
       template-aliases = {
