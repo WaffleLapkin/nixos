@@ -23,6 +23,8 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -31,6 +33,7 @@
       nixpkgs,
       treefmt-nix,
       systems,
+      nix-index-database,
       ...
     }:
     let
@@ -65,6 +68,8 @@
           modules = [
             ./common
             ./machines/${hostname}
+            nix-index-database.nixosModules.default
+            { programs.nix-index-database.comma.enable = true; }
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager = {
