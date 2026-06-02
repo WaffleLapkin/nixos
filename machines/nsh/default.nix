@@ -11,10 +11,7 @@
 
   # DE
   services.desktopManager.plasma6.enable = true;
-  services.displayManager = {
-    gdm.enable = true;
-    gdm.wayland = true;
-  };
+  services.displayManager.gdm.enable = true;
 
   niri.enable = true;
 
