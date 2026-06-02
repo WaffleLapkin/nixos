@@ -41,6 +41,12 @@
     preLVM = true;
   };
 
+  # Kate recommendation:tm:, change scheduler in an attempt to make things not freeze when building stuff
+  # FIXME: maybe also look at what people are saying in <https://discourse.nixos.org/t/desktop-oriented-kernel-scheduler/12588>
+  services.scx.enable = true;
+  # services.scx.scheduler = "scx_lavd";
+  services.scx.scheduler = "scx_bpfland";
+
   fileSystems."/boot".options = [ "umask=0077" ];
 
   services = {
