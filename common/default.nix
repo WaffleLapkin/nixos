@@ -188,7 +188,6 @@
     # social
     pkgs2.signal-desktop
     telegram-desktop
-    zulip
     zoom-us
     # Discord client with working screen sharing under wayland/plasma.
     # (I was told in sway the default client works too)
