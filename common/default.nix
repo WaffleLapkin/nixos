@@ -34,7 +34,15 @@
 
   hardware = {
     enableRedistributableFirmware = true;
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      # https://wiki.nixos.org/wiki/Bluetooth#Enabling_A2DP_Sink
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
     graphics = {
       enable = true;
       enable32Bit = true;

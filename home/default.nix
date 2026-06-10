@@ -21,6 +21,10 @@
   programs.home-manager.enable = true;
   home.stateVersion = "25.11";
 
+  # Supposed to help with bluetooth headphones and stuff...
+  # https://wiki.nixos.org/wiki/Bluetooth#Using_Bluetooth_headset_buttons_to_control_media_player
+  services.mpris-proxy.enable = true;
+
   niri = {
     enable = lib.mkDefault true;
     noctalia = true;
