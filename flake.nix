@@ -8,7 +8,8 @@
     plover-flake.url = "github:dnaq/plover-flake";
     fenix.url = "github:nix-community/fenix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
-    helix.url = "github:helix-editor/helix";
+    # helix.url = "github:helix-editor/helix";
+    helix.url = "github:WaffleLapkin/helix";
 
     niri-unstable.url = "github:YaLTeR/niri";
     niri = {
