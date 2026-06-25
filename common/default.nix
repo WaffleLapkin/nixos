@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  pkgs2,
   params,
   hostname,
   lib,
@@ -185,7 +186,7 @@
     tinymist # typst language server
 
     # social
-    signal-desktop
+    pkgs2.signal-desktop
     telegram-desktop
     zulip
     zoom-us

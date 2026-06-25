@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    nixpkgs2.url = "github:NixOs/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOs/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +33,7 @@
     inputs@{
       self,
       nixpkgs,
+      nixpkgs2,
       treefmt-nix,
       systems,
       nix-index-database,
@@ -62,6 +64,7 @@
             inherit hostname;
             inherit inputs;
             inherit params;
+            pkgs2 = nixpkgs2.legacyPackages.${params.arch};
           };
         in
         nixpkgs.lib.nixosSystem {
@@ -120,7 +123,6 @@
 
       external-machines = {
         ragdoll = {
-          arch = "x86_64-linux";
           external = true;
           friends = false;
           gamer = false;
