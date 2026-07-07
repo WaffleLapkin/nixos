@@ -7,10 +7,10 @@
 
     # Set the top-level options that are available
     matchBlocks = {
-      "*" = {
-        forwardAgent = true;
-        identityAgent = lib.mkIf (!params.external) "~/.1password/agent.sock";
-      };
+      # "*" = {
+      #   forwardAgent = true;
+      #   identityAgent = lib.mkIf (!params.external) "~/.1password/agent.sock";
+      # };
 
       "ragdoll" = {
         hostname = "192.168.178.138";
