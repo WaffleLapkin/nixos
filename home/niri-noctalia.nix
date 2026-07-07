@@ -54,7 +54,22 @@ in
       nwg-look
       # qt config tool
       kdePackages.qt6ct
+      # cursors
+      pkgs.google-cursor
     ];
+
+    home.pointerCursor = {
+      name = "GoogleDot-Black";
+      package = pkgs.google-cursor;
+
+      gtk.enable = true;
+      x11.enable = true;
+      size = 24;
+    };
+    programs.niri.settings.cursor = {
+      theme = "GoogleDot-Black";
+      size = 24;
+    };
 
     home.sessionVariables = {
       QT_QPA_PLATFORMTHEME = "qt6ct";
