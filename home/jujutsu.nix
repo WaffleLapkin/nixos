@@ -193,12 +193,11 @@
       signing = {
         behavior = "drop";
         backend = "ssh";
-        key = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKs8RecpDLlj7EoJ1REbdWDwzzNL8Gbx73jJ7gQBb1vHAAAABHNzaDo= wffl@riseup.net";
-        # key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5He7MsZqHaGWw33BzBeIvfO0kF3ibOtRzN7dDW8uAH";
-        # backends.ssh = lib.mkIf (!params.external) {
-        #   program = lib.getExe' pkgs._1password-gui "op-ssh-sign";
-        #   allowed-signers = "/home/${params.username}/.allowed-signers";
-        # };
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5He7MsZqHaGWw33BzBeIvfO0kF3ibOtRzN7dDW8uAH";
+        backends.ssh = lib.mkIf (!params.external) {
+          program = lib.getExe' pkgs._1password-gui "op-ssh-sign";
+          allowed-signers = "/home/${params.username}/.allowed-signers";
+        };
       };
 
       fsmonitor.backend = "watchman";
