@@ -127,7 +127,7 @@
         firstconflict = [
           "edit"
           "-r"
-          "roots(conflicts())"
+          "latest(roots(conflicts()))"
         ];
         "pushall" = [
           "git"
