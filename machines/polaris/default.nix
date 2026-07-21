@@ -71,6 +71,7 @@
     videoDrivers = [ "nvidia" ];
   };
   services.displayManager.gdm.enable = true;
+  services.displayManager.defaultSession = "niri";
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # try to run electron apps with ozone so they scale normally
 
   niri.enable = true;
