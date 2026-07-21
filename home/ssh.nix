@@ -14,7 +14,16 @@
 
       "ragdoll" = {
         hostname = "192.168.178.138";
+      };
+
+      "ragdoll-ext" = {
+        hostname = "192.168.178.138";
         proxyJump = "fili";
+      };
+
+      "ragdoll-ext2" = {
+        hostname = "hexcat.nl";
+        port = 4455;
       };
 
       "fili" = {
