@@ -53,6 +53,11 @@
         # Force ipv4 (ipv6 doesn't work for some reason lol)
         addressFamily = "inet";
       };
+
+      "yara" = {
+        hostname = "yara.blue";
+        port = 25567;
+      };
     };
   };
 }
