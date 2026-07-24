@@ -59,6 +59,8 @@
         # 2. but at the same time actually shows me branches when I'm only partially involved
 
         "log" = "trunk() | ancestors(trunk()..heads(((trunk()..visible_heads()) & my() | @)::), 2)";
+        "private" =
+          "description('wip:*') | description('todo:*') | description('TODO:*') | description('private:*') | description('priv:*')";
       };
 
       revsets.log = "log";
@@ -95,7 +97,7 @@
           "--from"
           "heads(::@- & bookmarks())"
           "--to"
-          "coalesce(@ & ~empty(), @-)"
+          "heads(::@ & ~empty() & ~private::)"
         ];
         ll = [
           "log"
@@ -209,7 +211,7 @@
         # `jj st` may cause auth dialogue from 1password.
         sign-on-push = true;
 
-        private-commits = "description('wip:*') | description('todo:*') | description('TODO:*') | description('private:*') | description('priv:*')";
+        private-commits = "private";
       };
     };
   };
