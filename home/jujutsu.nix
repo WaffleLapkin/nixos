@@ -17,8 +17,8 @@
     enable = true;
     package = pkgs.jujutsu;
     settings = {
-      user.name = "Waffle Lapkin";
-      user.email = "waffle.lapkin@gmail.com";
+      user.name = "waffle";
+      user.email = "wffl+16@riseup.net";
 
       ui.default-command = [
         "log"
