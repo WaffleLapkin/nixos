@@ -13,11 +13,11 @@
       };
 
       "ragdoll" = {
-        hostname = "192.168.178.138";
+        hostname = "192.168.178.178";
       };
 
       "ragdoll-ext" = {
-        hostname = "192.168.178.138";
+        hostname = "192.168.178.178";
         proxyJump = "fili";
       };
 
