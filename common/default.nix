@@ -189,12 +189,10 @@
     pkgs2.signal-desktop
     telegram-desktop
     zoom-us
-    # Discord client with working screen sharing under wayland/plasma.
-    # (I was told in sway the default client works too)
-    # (this could get me banned but ugh)
-    # (discord proper now can also do that, but eeeegh)
-    # vesktop
-    discord
+    # discord is having a weird bug where its border is humongous, soooo
+    # (using an alt client *could* get me banned but ugh)
+    vesktop
+    # discord
 
     # multimedia
     emulsion
