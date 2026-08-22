@@ -23,6 +23,11 @@
     "flakes"
   ];
 
+  systemd.services.nix-daemon.serviceConfig = {
+    Nice = lib.mkForce 15;
+    IOSchedulingClass = lib.mkForce "idle";
+  };
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.systemd-boot.memtest86.enable = true;
