@@ -57,8 +57,12 @@
         # This is more helpful than either the default or willhbr.net's one, because it
         # 1. only shows relevant branches (branches with my commits / the current one)
         # 2. but at the same time actually shows me branches when I'm only partially involved
+        #
+        # FIXME: this comment is outdated
+        # ~untracked_remote_bookmarks is trying to help with automation/bors/auto[-merge] getting in the log
 
-        "log" = "trunk() | ancestors(trunk()..heads(((trunk()..visible_heads()) & my() | @)::), 2)";
+        "log" =
+          "trunk() | ancestors(trunk()..heads(((trunk()..visible_heads()) & my() | @):: & ~(my()..untracked_remote_bookmarks(remote=\"upstream\")) ), 2)";
         "private" =
           "description('wip:*') | description('todo:*') | description('TODO:*') | description('private:*') | description('priv:*')";
       };
