@@ -112,7 +112,7 @@
         catchup = [
           "rebase"
           "-b"
-          "bookmarks() & mine() & ~immutable()"
+          "bookmarks() & (my() | mine()) & ~immutable()"
           "-d"
           "trunk()"
           "--skip-emptied"
