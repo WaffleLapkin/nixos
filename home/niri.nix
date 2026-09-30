@@ -86,7 +86,7 @@ in
     home.packages = with pkgs; [
       brightnessctl # brightness
       playerctl # play next/prev
-      gcr # system prompter
+      gcr_4 # system prompter
       nautilus # file manager
       polkit_gnome
 
