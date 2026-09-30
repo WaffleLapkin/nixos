@@ -99,9 +99,14 @@
           "bookmark"
           "move"
           "--from"
-          "heads(::@- & bookmarks())"
+          # The closest ancestor(s) of the current commit which are bookmarks
+          "heads(..@ & bookmarks())"
           "--to"
-          "heads(::@ & ~empty() & ~private::)"
+          # Given a set of commits between the bookmark(s) being moved, and the current commit,
+          # filter it to non-empty and non-descendants-of-private-commits. Then get the closest one to @.
+          #
+          # Note: repeating `..@ & bookmarks()` is important for perf, as otherwise `private::` takes forever.
+          "heads((..@ & bookmarks())..@ & ~empty() & ~((..@ & bookmarks())..@ & private)::)"
         ];
         ll = [
           "log"
