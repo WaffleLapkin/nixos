@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  pkgs2,
   params,
   hostname,
   lib,
@@ -191,7 +190,7 @@
     tinymist # typst language server
 
     # social
-    pkgs2.signal-desktop
+    signal-desktop
     telegram-desktop
     zoom-us
     # discord is having a weird bug where its border is humongous, soooo
