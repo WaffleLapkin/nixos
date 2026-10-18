@@ -15,6 +15,7 @@
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.niri-unstable.follows = "niri-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     matugen = {
       url = "github:/InioX/matugen/main";
