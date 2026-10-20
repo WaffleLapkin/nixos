@@ -1,7 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    oldnixpkgs.url = "github:NixOS/nixpkgs/20b1ddd1aa5ace70c9468305030aa4f9ef79671b";
     nixos-hardware.url = "github:NixOs/nixos-hardware";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # nixpkgs_plover.url = "github:FirelightFlagboy/nixpkgs/update-plover-4.0.0.dev12";
@@ -33,6 +35,7 @@
     inputs@{
       self,
       nixpkgs,
+      oldnixpkgs,
       treefmt-nix,
       systems,
       nix-index-database,
@@ -63,6 +66,7 @@
             inherit hostname;
             inherit inputs;
             inherit params;
+            oldpkgs = oldnixpkgs.legacyPackages.${params.arch};
           };
         in
         nixpkgs.lib.nixosSystem {

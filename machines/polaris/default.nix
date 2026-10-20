@@ -2,6 +2,7 @@
   lib,
   inputs,
   pkgs,
+  oldpkgs,
   ...
 }:
 {
@@ -70,6 +71,10 @@
     enable = true;
     videoDrivers = [ "nvidia" ];
   };
+
+  hardware.graphics.package = oldpkgs.mesa;
+  hardware.graphics.package32 = oldpkgs.pkgsi686Linux.mesa;
+
   services.displayManager.gdm.enable = true;
   services.displayManager.defaultSession = "niri";
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # try to run electron apps with ozone so they scale normally
