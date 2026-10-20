@@ -245,6 +245,15 @@
     eb-garamond
   ];
 
+  # ""Security fix""
+  # https://mastodon.catgirl.cloud/@49016/117474262003796549
+  # https://t.me/alisa_rummages/399
+  # https://t.me/catgirls_cute/96
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+    "emSign ECC Root CA - G3"
+  ];
+
   # Create a "plugdev" group.
   # Required for `pkgs.picoprobe-udev-rules` to properly work.
   users.groups.plugdev = { };
