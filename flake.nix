@@ -1,6 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOs/nixpkgs/7c39e9d04a79705cfb6a4336e49fa01ed91315cd";
     oldnixpkgs.url = "github:NixOS/nixpkgs/20b1ddd1aa5ace70c9468305030aa4f9ef79671b";
     nixos-hardware.url = "github:NixOs/nixos-hardware";
 
