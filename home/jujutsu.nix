@@ -33,7 +33,7 @@
       ui.diff-formatter = ":git"; # for delta
 
       revset-aliases = {
-        "my()" = "user(exact:\"waffle.lapkin@gmail.com\")";
+        "my()" = "user(exact:\"waffle.lapkin@gmail.com\") | user(exact:\"wffl+16@riseup.net\")";
         "user(x)" = "author(x) | committer(x)";
 
         # <https://willhbr.net/2024/08/18/understanding-revsets-for-a-better-jj-log-output/>
