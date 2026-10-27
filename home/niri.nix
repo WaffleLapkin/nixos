@@ -68,12 +68,6 @@ in
         default = { };
       };
 
-      layout = lib.mkOption {
-        type = lib.types.attrsOf lib.types.anything;
-        description = "Additional layout settings";
-        default = { };
-      };
-
       debug = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
         description = "Debug settings";
@@ -131,6 +125,17 @@ in
       # cursors
       pkgs.google-cursor
 
+      # # gtk
+      # nwg-look
+      # # qt config tool
+      # kdePackages.qt6ct
+
+      # # media control
+      # playerctl
+      # # brightness control
+      # brightnessctl
+      # pavucontrol
+
     ];
 
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
@@ -180,18 +185,23 @@ in
           scroll-button = 256;
           # middle-emulation = true;
         };
+
+        workspace-auto-back-and-forth = true;
       };
 
+      # FIXME: doesn't seem to work?..
       gestures.hot-corners.enable = false;
 
       layout = {
-        gaps = 16;
+        gaps = 8;
         center-focused-column = "never";
+        always-center-single-column = true;
 
         preset-column-widths = [
           { proportion = 0.33333; }
           { proportion = 0.5; }
           { proportion = 0.66667; }
+          { proportion = 1.0; }
         ];
 
         default-column-width = {
@@ -206,8 +216,34 @@ in
             y = 5;
           };
         };
-      }
-      // cfg.layout;
+
+        focus-ring = {
+          width = 1;
+          active.color = config.programs.matugen.theme.colors.primary.default.color;
+          inactive.color = config.programs.matugen.theme.colors.surface.default.color;
+          urgent.color = config.programs.matugen.theme.colors.error.default.color;
+        };
+
+        border = {
+          active.color = config.programs.matugen.theme.colors.primary.default.color;
+          inactive.color = config.programs.matugen.theme.colors.surface.default.color;
+          urgent.color = config.programs.matugen.theme.colors.error.default.color;
+        };
+
+        shadow = {
+          color = "${config.programs.matugen.theme.colors.shadow.default.color}70";
+        };
+
+        tab-indicator = {
+          active.color = config.programs.matugen.theme.colors.primary.default.color;
+          inactive.color = config.programs.matugen.theme.colors.primary_container.default.color;
+          urgent.color = config.programs.matugen.theme.colors.error.default.color;
+        };
+
+        insert-hint = {
+          display.color = "${config.programs.matugen.theme.colors.primary.default.color}80";
+        };
+      };
 
       hotkey-overlay.skip-at-startup = true;
 
@@ -225,7 +261,7 @@ in
         }
 
         {
-          matches = [ { app-id = "microsoft-edge"; } ];
+          matches = [ { app-id = "^firefox$"; } ];
           open-on-workspace = "browser";
         }
 
@@ -243,6 +279,10 @@ in
               app-id = "steam";
               title = "Steam Settings";
             }
+            {
+              app-id = "firefox$";
+              title = "^Picture-in-Picture$";
+            }
           ];
           open-floating = true;
           # fullscreen windows don't float, they drown
@@ -256,6 +296,7 @@ in
               app-id = "org.telegram.desktop";
               title = "^(.{0,11}$|[^M]|.[^e]|..[^d]|...[^i]|.{4}[^a]|.{5}[^ ]|.{6}[^v]|.{7}[^i]|.{8}[^e]|.{9}[^w]|.{10}[^e]|.{11}[^r]|.{13,})";
             }
+            { app-id = "signal"; } # TODO
           ];
           open-on-workspace = "chat";
         }
@@ -302,9 +343,15 @@ in
             "--silent"
           ];
         }
-        { argv = [ "microsoft-edge" ]; }
+        { argv = [ "firefox" ]; }
         { argv = [ "discord" ]; }
         { argv = [ "Telegram" ]; }
+        {
+          argv = [
+            "signal-desktop"
+            "--password-store=\"kwallet6\"" # signal, I beg, allow us to change password stores :sob:
+          ];
+        }
       ]
       ++ cfg.spawn-at-startup;
 
@@ -579,34 +626,6 @@ in
       };
     };
 
-    niri.layout = {
-      focus-ring = {
-        width = 1;
-        active.color = config.programs.matugen.theme.colors.primary.default.color;
-        inactive.color = config.programs.matugen.theme.colors.surface.default.color;
-        urgent.color = config.programs.matugen.theme.colors.error.default.color;
-      };
-
-      border = {
-        active.color = config.programs.matugen.theme.colors.primary.default.color;
-        inactive.color = config.programs.matugen.theme.colors.surface.default.color;
-        urgent.color = config.programs.matugen.theme.colors.error.default.color;
-      };
-
-      shadow = {
-        color = "${config.programs.matugen.theme.colors.shadow.default.color}70";
-      };
-
-      tab-indicator = {
-        active.color = config.programs.matugen.theme.colors.primary.default.color;
-        inactive.color = config.programs.matugen.theme.colors.primary_container.default.color;
-        urgent.color = config.programs.matugen.theme.colors.error.default.color;
-      };
-
-      insert-hint = {
-        display.color = "${config.programs.matugen.theme.colors.primary.default.color}80";
-      };
-    };
     niri.animations = { };
 
     niri.spawn-at-startup = [
