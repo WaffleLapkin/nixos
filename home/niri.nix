@@ -346,7 +346,7 @@ in
         {
           argv = [
             "signal-desktop"
-            "--password-store=\"kwallet6\"" # signal, I beg, allow us to change password stores :sob:
+            "--password-store=kwallet6" # signal, I beg, allow us to change password stores :sob:
           ];
         }
       ]
