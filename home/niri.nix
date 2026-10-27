@@ -13,13 +13,10 @@ let
   noctalia =
     cmd:
     [
-      "noctalia-shell"
-      "ipc"
-      "call"
+      "${pkgs.lib.getExe' inputs.noctalia.packages.${pkgs.system}.default "noctalia"}"
+      "msg"
     ]
     ++ (pkgs.lib.splitString " " cmd);
-
-  battery = if cfg.laptop then [ { id = "Battery"; } ] else [ ];
 in
 {
   options = {
@@ -585,7 +582,7 @@ in
     };
 
     niri.switch-events = {
-      lid-close.action.spawn = noctalia "lockScreen lock";
+      lid-close.action.spawn = noctalia "session lock";
     };
 
     niri.binds = {
@@ -596,12 +593,12 @@ in
 
       "Mod+D" = {
         hotkey-overlay.title = "Run an Application";
-        action.spawn = noctalia "launcher toggle";
+        action.spawn = noctalia "panel-toggle launcher";
       };
 
       "Mod+L" = {
         hotkey-overlay.title = "Lock the Screen";
-        action.spawn = noctalia "lockScreen lock";
+        action.spawn = noctalia "session lock";
       };
 
       "Mod+T" = {
@@ -629,127 +626,124 @@ in
     niri.animations = { };
 
     niri.spawn-at-startup = [
-      { argv = [ "noctalia-shell" ]; }
+      { argv = [ "${pkgs.lib.getExe' inputs.noctalia.packages.${pkgs.system}.default "noctalia"}" ]; }
     ];
 
-    programs.noctalia-shell = {
+    programs.noctalia = {
       enable = true;
       systemd.enable = false;
       settings = {
-        general = {
-          avatarImage = cfg.pfp;
+        shell = {
+          niri_overview_type_to_launch_enabled = true;
+          time_format = "{:%H:%M}";
+          date_format = "%A, %x";
+          polkit_agent = true;
+          panel = {
+            transparency_mode = "glass";
+            launcher_placement = "centered";
+
+            open_near_click_control_center = true;
+          };
+          launcher = {
+            categories = false;
+            sort_by_usage = true;
+            session_search = true;
+          };
         };
-        colorSchemes = {
-          darkMode = true;
-          generateTemplatesForPredefined = true;
-          matugenSchemeType = matugenSchemeType;
-          predefinedScheme = "Noctalia (default)";
-          useWallpaperColors = true;
+        theme = {
+          mode = "dark";
+          source = "wallpaper";
+          wallpaper_scheme = "m3-tonal-spot";
+
+          templates = {
+            builtin_ids = [
+              "gtk3"
+              "gtk4"
+              "niri"
+              "qt"
+            ];
+          };
         };
         location = {
-          monthBeforeDay = false;
-          name = "Delft, Netherlands";
-          firstDayOfWeek = 1;
+          address = "Prague, Czechia";
         };
         wallpaper = {
           enabled = true;
-          setWallpaperOnAllMonitors = true;
-          fillMode = "crop";
-        };
-        appLauncher = {
-          enableClipboardHistory = true;
-          terminalCommand = "alacritty -e";
+          fill_mode = "crop";
+          default.path = cfg.wallpaper;
         };
         sessionMenu = {
-          enableCountdown = true;
-          countdownDuration = 5000;
+          # TODO
+          enable_countdown = true;
+          countdown_duration = 5000;
         };
-        controlCenter = {
-          position = "close_to_bar_button";
-          shortcuts = {
-            left = [
-              {
-                id = "WiFi";
-              }
-              {
-                id = "Bluetooth";
-              }
-              {
-                id = "PowerProfile";
-              }
-              {
-                id = "KeepAwake";
-              }
-            ];
-            right = [ ];
-          };
+        control_center = {
+          sidebar = "compact";
+          shortcuts = [
+            {
+              type = "wifi";
+            }
+            { type = "bluetooth"; }
+            { type = "power_profile"; }
+            { type = "caffeine"; }
+          ];
         };
         bar = {
-          density = "compact";
-          position = "right";
-          backgroundOpacity = 0.5;
-          widgets = {
-            left = [
-              {
-                id = "ControlCenter";
-                useDistroLogo = true;
-              }
-              {
-                id = "NotificationHistory";
-              }
-              {
-                id = "plugin:catwalk";
-              }
-              {
-                id = "Volume";
-              }
+          order = [ "main" ];
+          main = {
+            position = "right";
+            background_opacity = 0.5;
+            margin_ends = 5;
+            margin_edge = 5;
+            margin_opposite_edge = 0;
+            thickness = 25;
+
+            start = [
+              "control-center"
+              "notifications"
+              "power_profile"
             ];
             center = [
-              {
-                hideUnoccupied = false;
-                id = "Workspace";
-                labelMode = "none";
-              }
+              "workspaces"
             ];
-            right = [
-              {
-                id = "Tray";
-                drawerEnabled = false;
-              }
-              {
-                id = "WiFi";
-              }
-              {
-                id = "Bluetooth";
-              }
-            ]
-            ++ battery
-            ++ [
-              {
-                id = "KeyboardLayout";
-                displayMode = "forceOpen";
-              }
-              {
-                formatHorizontal = "HH:mm";
-                formatVertical = "HH mm";
-                id = "Clock";
-                useMonospacedFont = true;
-                usePrimaryColor = true;
-              }
+            end = [
+              "tray"
+              "network"
+              "bluetooth"
+              "brightness"
+              "volume"
+              "battery"
+              "keyboard_layout"
+              "clock"
             ];
           };
         };
-        templates = {
-          gtk = true;
-          qt = true;
-          niri = true;
-        };
-      };
-    };
+        widget = {
+          clock = {
+            format_horizontal = "%H:%M";
+            format_vertical = "%H %M";
+          };
 
-    home.file.".cache/noctalia/wallpapers.json" = {
-      text = builtins.toJSON {
-        defaultWallpaper = cfg.wallpaper;
+          bluetooth.show_label = false;
+          brightness.show_label = false;
+          network.show_label = false;
+          volume.show_label = false;
+          battery.show_label = false; # FIXME: bat only if laptop?
+
+          keyboard_layout = {
+            hide_when_single_layout = false;
+          };
+          tray = {
+            drawer = false;
+          };
+          workspaces = {
+            hide_when_empty = false;
+            display = "none";
+          };
+          control-center = {
+            custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake.png";
+          };
+        };
       };
     };
 
