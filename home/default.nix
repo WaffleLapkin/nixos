@@ -12,7 +12,6 @@
     ./helix.nix
     ./starship.nix
     ./niri.nix
-    ./niri-noctalia.nix
   ];
 
   home.username = params.username;
@@ -27,7 +26,6 @@
 
   niri = {
     enable = lib.mkDefault true;
-    noctalia = true;
     laptop = true;
     outputs = { };
     touchpad = { };
